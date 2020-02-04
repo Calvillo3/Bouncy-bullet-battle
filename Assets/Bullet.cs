@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float bounds;
 
-    Collider2D coll;
+    CircleCollider2D coll;
     Rigidbody2D rb;
 
     GameObject shooter;
@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<Collider2D>();
+        coll = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
         escapedPlayer = false;
@@ -61,6 +61,11 @@ public class Bullet : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        else if (collision.gameObject.GetComponent<Bullet>() != null)
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
         // We will need to add a case for hitting a zombie.
         // Though that should look similar to hitting a player.
         else
@@ -80,11 +85,19 @@ public class Bullet : MonoBehaviour
     //This is for the case where a player stupidly stands in front of a wall and shoots
     void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
+        
         if (collision.gameObject != shooter)
         {
             if (!escapedPlayer)
             {
                 shooter.GetComponent<PlayerMovement>().TakeDamage(damage);
+                Destroy(this.gameObject);
+            }
+            // Unity seems to update the collider into not being a trigger on a delay
+            // So in this case, it means we hit a wall and should bounce as if we were not a trigger
+            else
+            {
+                Bounce();
             }
         }
     }
@@ -94,10 +107,10 @@ public class Bullet : MonoBehaviour
     // how they are oriented when the bounce.
     void Bounce()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, direction, 1f, LayerMask.GetMask("Wall"));
+        RaycastHit2D hit = Physics2D.CircleCast(rb.position, coll.radius, direction, speed * Time.fixedDeltaTime, LayerMask.GetMask("Wall"));
         Vector2 normal = hit.normal;
         direction = direction - 2 * Vector2.Dot(direction, normal) * normal;
-        rb.MovePosition(rb.position + direction * 10 * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 }
 
