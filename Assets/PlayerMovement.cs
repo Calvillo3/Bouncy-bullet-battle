@@ -35,7 +35,6 @@ public class PlayerMovement : ShooterMovement
             // The player goes to heaven. 
             // Which is a box far away
             rb.MovePosition(20 * Vector2.up);
-            Debug.Log("Go to Heaven");
             dead = true;
             //Destroy(this.gameObject);
         }
