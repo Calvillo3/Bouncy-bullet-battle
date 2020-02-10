@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
 
     GameObject shooter;
-    bool escapedPlayer;
+    bool escapedShooter;
     Vector2 direction;
     int damage;
 
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         coll = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        escapedPlayer = false;
+        escapedShooter = false;
         damage = 1;
 
         rb.transform.rotation = Quaternion.AngleAxis(rb.rotation, Vector3.forward);
@@ -50,14 +50,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerMovement>() != null)
+        if (collision.gameObject.GetComponent<ShooterMovement>() != null)
         {
             // This is too avoid hitting ourselves once we fire it
             // Technically if that happens the bullet should still be a trigger,
             // But this is an extra precaution. 
-            if (collision.gameObject != shooter || escapedPlayer)
+            if (collision.gameObject != shooter || escapedShooter)
             {
-                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(damage);
+                collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage);
                 Destroy(this.gameObject);
             }
         }
@@ -76,9 +76,9 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerExit2D(UnityEngine.Collider2D collision)
     {
-        if (collision.gameObject == shooter && !escapedPlayer)
+        if (collision.gameObject == shooter && !escapedShooter)
         {
-            escapedPlayer = true;
+            escapedShooter = true;
             coll.isTrigger = false;
         }
     }
@@ -88,9 +88,9 @@ public class Bullet : MonoBehaviour
         
         if (collision.gameObject != shooter)
         {
-            if (!escapedPlayer)
+            if (!escapedShooter)
             {
-                shooter.GetComponent<PlayerMovement>().TakeDamage(damage);
+                shooter.GetComponent<ShooterMovement>().TakeDamage(damage);
                 Destroy(this.gameObject);
             }
             // Unity seems to update the collider into not being a trigger on a delay

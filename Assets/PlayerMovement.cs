@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : ShooterMovement
 {
 
     [SerializeField] float moveSpeed;
     [SerializeField] float turnSpeed;
-    [SerializeField] Bullet bullet;
 
     [SerializeField] int playerNum;
-
-    public Rigidbody2D rb;
     bool readyToShoot = true;
 
     Vector2 movement;
@@ -27,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
         movement.y = Input.GetAxisRaw("VerticalPlayer" + playerNum) * -1;
 
@@ -40,10 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot)
         {
             readyToShoot = false;
-            // Shoots a bullet in the direction the player is facing
-            Bullet pewpew = Instantiate(bullet,rb.position,rb.transform.rotation);
-            // We need to tell the bullet we shot it so it doesn't hurt the player... at first
-            pewpew.Claim(this.gameObject);
+            Fire();
         }
     }
 
