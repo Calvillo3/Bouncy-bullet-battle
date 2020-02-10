@@ -19,6 +19,9 @@ public class Spawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             nextSpawnTime = Time.time + timeInBetween;
+
+            // Because we have the enemy reference things in scene,
+            // we duplicate a deactiated enemy and activate it.
             EnemyMovement newFoe = Instantiate(enemy, transform.position, Quaternion.identity);
             newFoe.gameObject.SetActive(true);
         }

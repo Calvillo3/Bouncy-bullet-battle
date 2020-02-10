@@ -26,6 +26,9 @@ public class PlayerMovement : ShooterMovement
     {
         if (health <= 0)
         {
+            // Right now destorying a single player causes a crash...
+            // This should be fixed, but we need to decide if the game should end
+            // After one player dies, or after both players die
             Destroy(this.gameObject);
         }
 
@@ -50,11 +53,5 @@ public class PlayerMovement : ShooterMovement
     { 
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         rb.SetRotation(rb.rotation - turn * turnSpeed * Time.fixedDeltaTime);
-    }
-
-    public void TakeDamage(int amount)
-    {
-        Debug.Log("Ow! at " + Time.time + " seconds.");
-        //TODO Give the player health which ticks down after getting hit.
     }
 }

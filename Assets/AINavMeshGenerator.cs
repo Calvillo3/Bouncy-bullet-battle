@@ -8,6 +8,9 @@ using Unity.Collections;
 using UnityEditor;
 #endif
 
+// This code is a slight modification of 7ark's Unity Pathfinding project:
+// https://github.com/7ark/Unity-Pathfinding
+// License can be found at the bottom of the file.
 public class Node
 {
     public bool valid = true;
@@ -85,7 +88,7 @@ public class AINavMeshGenerator : MonoBehaviour
         FillOutGrid();
         DestroyBadNodes();
         CheckForBadNodes();
-        DestroyBadEdges();
+        // DestroyBadEdges(); Didn't quite get this working, but instead removed Nodes near walls.
     }
 
 
@@ -172,7 +175,7 @@ public class AINavMeshGenerator : MonoBehaviour
         //First check if each node is inside a destroy mask
         for (int i = Grid.Count - 1; i >= 0; i--)
         {
-            Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, .01f, destroyNodeMask);
+            Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, .1f, destroyNodeMask);
             if (hit != null)
             {
                 //At this point, we know this node is bad, and we must destroy it. For humanity itself.
@@ -200,6 +203,10 @@ public class AINavMeshGenerator : MonoBehaviour
         }
     }
 
+    // Right now this does nothing, but it seems like a good idea if someone can get it working
+    // This skeleton exists for anyone who wishes to try
+    // The idea is to eliminate edges that pass through walls
+    // The current workaround is simply eliminating any nodes close to walls which seems to work fine
     private void DestroyBadEdges()
     {
         for (int i = Grid.Count - 1; i >= 0; i--)
@@ -247,7 +254,10 @@ public class AINavMeshGenerator : MonoBehaviour
         {
             if (Grid[i].valid)
             {
-                Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, 0.2f, obstacleMask);
+                //.5f should potentially be serialized. 
+                // Increasing it helps us avoid nodes near walls 
+                // but makes enemies stuck sometimes
+                Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, 0.3f, obstacleMask);
                 if (hit != null)
                 {
                     Grid[i].valid = false;
@@ -606,3 +616,27 @@ public class RectUtils
 }
 
 #endif
+
+/*
+ * MIT License
+
+Copyright (c) 2018 Cory Koseck
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/

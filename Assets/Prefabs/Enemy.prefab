@@ -102,10 +102,11 @@ MonoBehaviour:
   nav: {fileID: 0}
   moveSpeed: 3
   maxSteering: 3
-  reloadTime: 1
+  squaredApproachDistance: 10
+  reloadTime: 0.5
+  scoreBoard: {fileID: 0}
   xBound: 8
   yBound: 4
-  squaredApproachDistance: 10
 --- !u!50 &6977311057941796927
 Rigidbody2D:
   serializedVersion: 4
