@@ -31,14 +31,14 @@ public class PlayerMovement : ShooterMovement
     {
         if (health <= 0)
         {
-            // Right now destorying a single player causes a crash...
-            // This should be fixed, but we need to decide if the game should end
-            // After one player dies, or after both players die
+            // The player goes to heaven. 
+
             Destroy(this.gameObject);
         }
         
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
         movement.y = Input.GetAxisRaw("VerticalPlayer" + playerNum) * -1;
+        movement = Vector2.ClampMagnitude(movement, 1);
         /*
         turn = Input.GetAxis("HorizontalJoyRPlayer" + playerNum);
         */
