@@ -10,6 +10,7 @@ public class PlayerMovement : ShooterMovement
 
     [SerializeField] int playerNum;
     bool readyToShoot = true;
+    bool dead = false;
 
     Vector2 movement;
 
@@ -32,8 +33,11 @@ public class PlayerMovement : ShooterMovement
         if (health <= 0)
         {
             // The player goes to heaven. 
-
-            Destroy(this.gameObject);
+            // Which is a box far away
+            rb.MovePosition(20 * Vector2.up);
+            Debug.Log("Go to Heaven");
+            dead = true;
+            //Destroy(this.gameObject);
         }
         
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
@@ -68,7 +72,10 @@ public class PlayerMovement : ShooterMovement
 
     void FixedUpdate()
     { 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (!dead)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
         //original//  rb.SetRotation(rb.rotation - turn * turnSpeed * Time.fixedDeltaTime);
        // if (angle*angle > 0.01f)
         //{
