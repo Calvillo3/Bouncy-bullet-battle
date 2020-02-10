@@ -10,6 +10,7 @@ public class PlayerMovement : ShooterMovement
 
     [SerializeField] int playerNum;
     bool readyToShoot = true;
+    bool dead = false;
 
     Vector2 movement;
 
@@ -31,14 +32,17 @@ public class PlayerMovement : ShooterMovement
     {
         if (health <= 0)
         {
-            // Right now destorying a single player causes a crash...
-            // This should be fixed, but we need to decide if the game should end
-            // After one player dies, or after both players die
-            Destroy(this.gameObject);
+            // The player goes to heaven. 
+            // Which is a box far away
+            rb.MovePosition(20 * Vector2.up);
+            Debug.Log("Go to Heaven");
+            dead = true;
+            //Destroy(this.gameObject);
         }
         
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
         movement.y = Input.GetAxisRaw("VerticalPlayer" + playerNum) * -1;
+        movement = Vector2.ClampMagnitude(movement, 1);
         /*
         turn = Input.GetAxis("HorizontalJoyRPlayer" + playerNum);
         */
@@ -68,7 +72,10 @@ public class PlayerMovement : ShooterMovement
 
     void FixedUpdate()
     { 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (!dead)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
         //original//  rb.SetRotation(rb.rotation - turn * turnSpeed * Time.fixedDeltaTime);
        // if (angle*angle > 0.01f)
         //{
