@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : ShooterMovement
 {
@@ -34,9 +35,14 @@ public class PlayerMovement : ShooterMovement
         {
             // The player goes to heaven. 
             // Which is a box far away
-            rb.MovePosition(20 * Vector2.up);
+            rb.MovePosition(21.5f * Vector2.up);
             dead = true;
             //Destroy(this.gameObject);
+        }
+
+        if (Input.GetAxisRaw("Start") == 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
