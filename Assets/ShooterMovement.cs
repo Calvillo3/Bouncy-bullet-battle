@@ -26,7 +26,10 @@ public class ShooterMovement : MonoBehaviour
     protected void Fire()
     {
         // Shoots a bullet in the direction the shooter is facing
+        
         Bullet pewpew = Instantiate(bullet, rb.position, rb.transform.rotation);
+        pewpew.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
+        
         // We need to tell the bullet we shot it so it doesn't hurt the shooter... at first
         pewpew.Claim(this.gameObject);
     }
