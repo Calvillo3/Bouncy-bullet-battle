@@ -152,6 +152,12 @@ public class EnemyMovement : ShooterMovement
             }
             else
             {
+                if (disp.magnitude <= Time.deltaTime * moveSpeed)
+                {
+                    lastSpot = target.rb.position;
+                    steps = path.FindPath(rb.position, lastSpot);
+                    nextStep = 0;
+                }
                 foundNextStep = true;
             }
         }

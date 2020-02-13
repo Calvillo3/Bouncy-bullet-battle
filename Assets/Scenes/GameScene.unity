@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &42922906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
     m_Bits: 0
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1792
   size:
     serializedVersion: 2
     x: 0
@@ -823,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380622620}
   m_LocalRotation: {x: -0, y: -0, z: -0.9525376, w: 0.3044212}
-  m_LocalPosition: {x: -4.89, y: 0.34, z: 0}
+  m_LocalPosition: {x: -5.19, y: -0.27, z: 0}
   m_LocalScale: {x: 2.9350011, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1377567376}
@@ -3625,7 +3625,7 @@ PrefabInstance:
     - target: {fileID: 1875095814466082768, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 1875095814466082768, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
