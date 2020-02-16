@@ -1525,6 +1525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a6f1e8f310de947a6c9d892099d24c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 43333051}
+  reviveTime: 0
 --- !u!1 &811217932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,6 +2841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a6f1e8f310de947a6c9d892099d24c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 495144014}
+  reviveTime: 0
 --- !u!1 &1537068545
 GameObject:
   m_ObjectHideFlags: 0

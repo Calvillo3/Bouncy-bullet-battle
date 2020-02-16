@@ -13,6 +13,7 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] Ghost ghost;
     bool readyToShoot = true;
     bool dead = false;
+    float maxHealth;
 
     Vector2 movement;
 
@@ -26,7 +27,7 @@ public class PlayerMovement : ShooterMovement
     // Start is called before the first frame update
     void Start()
     {
-
+        maxHealth = health;
     }
 
     // Update is called once per frame
@@ -96,5 +97,11 @@ public class PlayerMovement : ShooterMovement
        // rb.SetRotation(rb.rotation - angle * turnSpeed * Time.fixedDeltaTime);
 
 
+    }
+
+    public void Revive()
+    {
+        dead = false;
+        health = maxHealth;
     }
 }
