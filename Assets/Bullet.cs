@@ -91,13 +91,19 @@ public class Bullet : MonoBehaviour
             if (!escapedShooter)
             {
                 string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-                if (layerName == "Enemy")
+                if (layerName == "Enemy" || layerName == "Player")
                 {
                     collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage);
+                    Destroy(this.gameObject);
                 }
-                //shooter.GetComponent<ShooterMovement>().TakeDamage(damage);
-                Destroy(this.gameObject);
-
+                if (layerName == "Wall")
+                {
+                    Destroy(this.gameObject);
+                }
+                if (layerName == "TransparentFX")
+                {
+                    // Do nothing if you hit a ghost
+                }
             }
             // Unity seems to update the collider into not being a trigger on a delay
             // So in this case, it means we hit a wall and should bounce as if we were not a trigger
