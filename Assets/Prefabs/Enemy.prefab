@@ -101,7 +101,7 @@ MonoBehaviour:
   players: []
   nav: {fileID: 0}
   moveSpeed: 3
-  maxSteering: 3
+  maxSteering: 1
   squaredApproachDistance: 10
   reloadTime: 0.5
   scoreBoard: {fileID: 0}

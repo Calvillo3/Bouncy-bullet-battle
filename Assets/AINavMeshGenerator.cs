@@ -175,7 +175,7 @@ public class AINavMeshGenerator : MonoBehaviour
         //First check if each node is inside a destroy mask
         for (int i = Grid.Count - 1; i >= 0; i--)
         {
-            Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, .1f, destroyNodeMask);
+            Collider2D hit = Physics2D.OverlapCircle(Grid[i].position, .5f, destroyNodeMask);
             if (hit != null)
             {
                 //At this point, we know this node is bad, and we must destroy it. For humanity itself.
