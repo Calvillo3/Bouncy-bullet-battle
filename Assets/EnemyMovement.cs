@@ -71,9 +71,6 @@ public class EnemyMovement : ShooterMovement
         {
             PickClosestTarget();
             UpdatePath();
-            // Sometimes enemies will have crowded off a player, cutting off a path to them
-            // For now we will wait, but potentially we should do something else in the future
-            if (steps == null) return;
             CalcNextStep();
             MoveWithSteering();
         }
@@ -128,12 +125,15 @@ public class EnemyMovement : ShooterMovement
         // Do we need to update our path? 
         // If we walk to our current destination will we be able to shoot our target?
         Vector2 disp = target.rb.position - lastSpot;
-        RaycastHit2D hit = Physics2D.CircleCast(lastSpot, coll.radius, disp, disp.magnitude);
-        if (hit.rigidbody != target.rb)
+        if (disp.magnitude > 1 || (steps == null))
         {
-            lastSpot = target.rb.position;
-            steps = path.FindPath(rb.position, lastSpot);
-            nextStep = 0;
+            RaycastHit2D hit = Physics2D.CircleCast(lastSpot, coll.radius, disp, disp.magnitude + 1);
+            if (hit.rigidbody != target.rb || (steps == null))
+            {
+                lastSpot = target.rb.position;
+                steps = path.FindPath(rb.position, lastSpot);
+                nextStep = 0;
+            }
         }
     }
 
@@ -141,17 +141,31 @@ public class EnemyMovement : ShooterMovement
     // Find out what is the last step that we can walk towards in a straight line
     private void CalcNextStep()
     {
+        // If we don't have a path, just sit still
+        if (steps == null) return;
+
         foundNextStep = false;
         while (nextStep < (steps.Length - 1) && !foundNextStep)
         {
             Vector2 disp = rb.position - steps[nextStep + 1];
-            RaycastHit2D hit = Physics2D.CircleCast(steps[nextStep + 1], coll.radius, disp, disp.magnitude);
+            //RaycastHit2D hit = Physics2D.CircleCast(steps[nextStep + 1], coll.radius / 2, disp, disp.magnitude);
+            // Technically by using a linecast instead of a raycast we might try to move into a space partially blocked
+            // But most of the time the rigidbody mechanics will handle this and just push the enemy along
+            // This will cause problems if we have a narrow path with a small opening, but let's not have those
+            RaycastHit2D hit = Physics2D.Linecast(steps[nextStep + 1], rb.position);
             if (hit.collider == coll || !hit)
             {
                 nextStep++;
             }
             else
             {
+                // If the next space is extremely close yet we cannot get there, find a new path
+                if (disp.magnitude <= Time.deltaTime * moveSpeed)
+                {
+                    lastSpot = target.rb.position;
+                    steps = path.FindPath(rb.position, lastSpot);
+                    nextStep = 0;
+                }
                 foundNextStep = true;
             }
         }
@@ -160,13 +174,55 @@ public class EnemyMovement : ShooterMovement
     // It looks better if the enemy has trouble immediately changing direction, thus steering behaviors
     private void MoveWithSteering()
     {
-        Vector2 desired_velocity = (steps[nextStep] - rb.position).normalized * moveSpeed;
-        Vector2 steering = Vector2.ClampMagnitude(desired_velocity - velocity, maxSteering);
+        Vector2 desiredVelocity = Vector2.zero;
+        // Hopefully we can go towards the player, but if not at least move away from a wall
+        if (steps != null)
+        {
+            // If the next destination is very close, we don't desire to overshoot it, though we may with steering
+            desiredVelocity = (steps[nextStep] - rb.position) / Mathf.Max(1, (steps[nextStep] - rb.position).magnitude) * moveSpeed;
+        }
+        
+        // If we aren't moving that fast, let's use our additional speed to move away from other colliders
+        if (desiredVelocity.magnitude + 1 < moveSpeed)
+        {
+            desiredVelocity += MovementAway(desiredVelocity);
+        }
+
+        Vector2 steering = Vector2.ClampMagnitude(desiredVelocity - velocity, maxSteering);
         velocity = Vector2.ClampMagnitude(velocity + steering, moveSpeed);
+
+
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         // If the enemy shoots as soon as they get into position, SetRotation won't have taken affect yet
         // Thus we need to build in some time for the rigidbody to aim towards the player
         reloadedAtTime = Time.time + reloadTime;
+    }
+
+    // Use remaining movement to move away from other colliders
+    Vector2 MovementAway(Vector2 oldVelocity)
+    {
+        Collider2D[] closeColls = Physics2D.OverlapCircleAll(rb.position, coll.radius * 2);
+        if (closeColls.Length > 1)
+        {
+            Vector2 minDist = Vector2.one * Mathf.Infinity;
+            foreach (Collider2D other_coll in closeColls)
+            {
+                if (other_coll != coll)
+                {
+                    Vector2 closestPoint = other_coll.ClosestPoint(rb.position);
+                    Vector2 newDist = rb.position - closestPoint;
+                    if (newDist.sqrMagnitude < minDist.sqrMagnitude)
+                    {
+                        minDist = newDist;
+                    }
+                }
+            }
+            return Vector2.ClampMagnitude(minDist.normalized * moveSpeed, moveSpeed - oldVelocity.magnitude);
+        }
+        else
+        {
+            return Vector2.zero;
+        }
     }
 }
 
