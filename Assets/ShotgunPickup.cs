@@ -9,6 +9,10 @@ public class ShotgunPickup : MonoBehaviour
     void Start() {
         lst = GameObject.Find("/Tethers");
     }
+
+    void Update() {
+        transform.Rotate(0, 0, 100 * Time.deltaTime);
+    }
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Player") {
