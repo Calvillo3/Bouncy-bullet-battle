@@ -15,6 +15,7 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] float[] shootDelay;
     float currShotDelay;
 
+    [SerializeField] Ghost ghost;
     [SerializeField] int playerNum;
     bool readyToShoot = true;
     bool dead = false;
@@ -42,6 +43,12 @@ public class PlayerMovement : ShooterMovement
     {
         if (health <= 0)
         {
+            // Put a ghost where we died and activate it
+            if (!dead)
+            {
+                ghost.gameObject.transform.position = rb.position;
+                ghost.gameObject.SetActive(true);
+            }
             // The player goes to heaven. 
             // Which is a box far away
             rb.position = 21.5f * Vector2.up;

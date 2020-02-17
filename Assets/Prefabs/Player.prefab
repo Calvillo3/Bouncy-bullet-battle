@@ -180,10 +180,15 @@ MonoBehaviour:
   health: 1
   rb: {fileID: 1875095814466082769}
   lastShooter: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 3
   turnSpeed: 300
-  playerNum: 0
+  shootDelay:
+  - 0.2
+  - 0.125
+  - 0.5
   ghost: {fileID: 0}
+  playerNum: 0
+  ammoCount: 0
 --- !u!50 &1875095814466082769
 Rigidbody2D:
   serializedVersion: 4
