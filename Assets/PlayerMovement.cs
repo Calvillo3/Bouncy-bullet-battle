@@ -8,7 +8,7 @@ public class PlayerMovement : ShooterMovement
 
     [SerializeField] float moveSpeed;
     [SerializeField] float turnSpeed;
-
+    GameObject explosion;
     bool[] bulletType = {true, false, false}; //Holds array saying which bullet type is on, currently
                                         // {default ,AK, Shotgun}
 
@@ -36,6 +36,15 @@ public class PlayerMovement : ShooterMovement
     {
         maxHealth = health;
         currShotDelay = 0;
+
+        Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        for (int i = 0; i < allParticles.Length; i++)
+        {
+            if (allParticles[i].name == "TinyExplosion")
+            {
+                explosion = (GameObject)allParticles[i];
+            }
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +55,11 @@ public class PlayerMovement : ShooterMovement
             // Put a ghost where we died and activate it
             if (!dead)
             {
+                Gradient grad = new Gradient();
+                grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
+                var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
+                col.color = grad;
+                Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
                 ghost.gameObject.transform.position = rb.position;
                 ghost.gameObject.SetActive(true);
             }

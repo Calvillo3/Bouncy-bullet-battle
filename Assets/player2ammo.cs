@@ -11,6 +11,13 @@ public class player2ammo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = player2.GetComponent<PlayerMovement>().ammoCount.ToString(); 
+        if (player2.GetComponent<PlayerMovement>().ammoCount > 0)
+        {
+            scoreText.text = player2.GetComponent<PlayerMovement>().ammoCount.ToString();
+        }
+        else
+        {
+            scoreText.text = "\u221E";
+        }
     }
 }

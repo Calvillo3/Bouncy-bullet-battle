@@ -52,10 +52,6 @@ public class EnemyMovement : ShooterMovement
                 explosion = (GameObject) allParticles[i];
             }
         }
-        if(explosion == null)
-        {
-            Debug.Log("No boom sticks here.");
-        }
     }
 
     // Update is called once per frame
