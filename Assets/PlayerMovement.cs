@@ -9,6 +9,12 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] float moveSpeed;
     [SerializeField] float turnSpeed;
 
+    bool[] bulletType = {true, false, false}; //Holds array saying which bullet type is on, currently
+                                        // {default ,AK, Shotgun}
+
+    [SerializeField] float[] shootDelay;
+    float currShotDelay;
+
     [SerializeField] int playerNum;
     bool readyToShoot = true;
     bool dead = false;
@@ -21,11 +27,12 @@ public class PlayerMovement : ShooterMovement
     float horizontal;
     float vertical;
     float prevangle;
+    public int ammoCount;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currShotDelay = 0;
     }
 
     // Update is called once per frame
@@ -61,9 +68,11 @@ public class PlayerMovement : ShooterMovement
         }
     
         // rb.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+       
+        
 
-
-        if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5)
+        if (bulletType[0]) {
+        if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[0])
         {
             readyToShoot = true;
         }
@@ -71,8 +80,54 @@ public class PlayerMovement : ShooterMovement
         if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot)
         {
             readyToShoot = false;
+            currShotDelay = 0;
             Fire();
         }
+        }
+        else if (bulletType[1]) {
+            
+            if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && currShotDelay >= shootDelay[1]) {
+                currShotDelay = 0;
+                Fire();
+                ammoCount--;
+                
+            }
+            if(ammoCount <= 0) {
+                bulletType[0] = true;
+                bulletType[1] = false;
+                ammoCount = 0;
+                currShotDelay = 0;
+                return;
+            }
+        }
+        else if (bulletType[2]) {
+            if (ammoCount <= 0) {
+                bulletType[0] = true;
+                bulletType[2] = false;
+                ammoCount = 0;
+            }
+            if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[2])
+            {
+                readyToShoot = true;
+            }
+            if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot) {
+                readyToShoot = false;
+                currShotDelay = 0;
+                ShotgunFire();
+                ammoCount--;
+            }
+        }
+        currShotDelay += Time.deltaTime;
+    }
+    public void RunAK() {
+        bulletType[0] = false;
+        bulletType[1] = true;
+        ammoCount = 30;
+    }
+    public void RunShotgun() {
+        bulletType[0] = false;
+        bulletType[2] = true;
+        ammoCount = 10;
     }
 
     void FixedUpdate()

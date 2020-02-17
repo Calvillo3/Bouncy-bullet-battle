@@ -34,6 +34,26 @@ public class ShooterMovement : MonoBehaviour
         pewpew.Claim(this.gameObject);
     }
 
+    protected void ShotgunFire() {
+        Vector3 rot1 = rb.transform.rotation.eulerAngles;
+        rot1 = new Vector3(rot1.x, rot1.y, rot1.z + 15);
+        Vector3 rot2 = rb.transform.rotation.eulerAngles;
+        rot2 = new Vector3(rot2.x, rot2.y, rot2.z - 15);
+        Bullet pewpew1 = Instantiate(bullet, rb.position, Quaternion.Euler(rot1));
+        Bullet pewpew2 = Instantiate(bullet, rb.position, rb.transform.rotation);
+        Bullet pewpew3 = Instantiate(bullet, rb.position, Quaternion.Euler(rot2));
+        pewpew1.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
+        pewpew2.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
+        pewpew3.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color; 
+        pewpew1.Claim(this.gameObject);
+        pewpew2.Claim(this.gameObject);
+        pewpew3.Claim(this.gameObject);
+        pewpew1.BulletClaim(pewpew2);
+        pewpew1.BulletClaim(pewpew3);
+        pewpew2.BulletClaim(pewpew3);
+
+    }
+
     // I'm not perfectly consistent or sure about if this should be an int or a float... 
     public void TakeDamage(int amount)
     {

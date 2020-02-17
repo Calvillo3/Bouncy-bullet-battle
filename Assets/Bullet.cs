@@ -43,6 +43,22 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
+    //Guns that shoot multiple bullets at once should not destroy eachother
+    public void BulletClaim(Bullet pew) {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), pew.gameObject.GetComponent<Collider2D>());
+        StartCoroutine(EnableCollision(gameObject.GetComponent<Collider2D>(), pew.gameObject.GetComponent<Collider2D>()));
+    }
+
+    private IEnumerator EnableCollision(Collider2D col1, Collider2D col2) {
+        
+        yield return new WaitForSeconds (1.5f);
+        if(col1 == null | col2 == null) {
+            yield break;
+        }
+        Physics2D.IgnoreCollision(col1, col2, false);
+        
+    }
+
     public void Claim(GameObject player)
     {
         shooter = player;
