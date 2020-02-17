@@ -237,6 +237,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 6977311057941796913, guid: 9fcddc42aec64284a8d0dd289e4acb01,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.029988196
+      objectReference: {fileID: 0}
     - target: {fileID: 6977311057941796915, guid: 9fcddc42aec64284a8d0dd289e4acb01,
         type: 3}
       propertyPath: players.Array.size
