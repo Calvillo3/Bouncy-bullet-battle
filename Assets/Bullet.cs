@@ -43,6 +43,22 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
+    //Guns that shoot multiple bullets at once should not destroy eachother
+    public void BulletClaim(Bullet pew) {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), pew.gameObject.GetComponent<Collider2D>());
+        StartCoroutine(EnableCollision(gameObject.GetComponent<Collider2D>(), pew.gameObject.GetComponent<Collider2D>()));
+    }
+
+    private IEnumerator EnableCollision(Collider2D col1, Collider2D col2) {
+        
+        yield return new WaitForSeconds (1.5f);
+        if(col1 == null | col2 == null) {
+            yield break;
+        }
+        Physics2D.IgnoreCollision(col1, col2, false);
+        
+    }
+
     public void Claim(GameObject player)
     {
         shooter = player;
@@ -91,19 +107,21 @@ public class Bullet : MonoBehaviour
             if (!escapedShooter)
             {
                 string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-                if (layerName == "Enemy" || layerName == "Player")
+                if (layerName == "Enemy")
                 {
                     collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                     Destroy(this.gameObject);
                 }
                 if (layerName == "Wall")
                 {
-                    Destroy(this.gameObject);
+                    shooter.TakeDamage(damage, shooter);
+                    //Destroy(this.gameObject);
                 }
                 if (layerName == "TransparentFX")
                 {
                     // Do nothing if you hit a ghost
                 }
+
             }
             // Unity seems to update the collider into not being a trigger on a delay
             // So in this case, it means we hit a wall and should bounce as if we were not a trigger

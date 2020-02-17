@@ -8,13 +8,15 @@ public class WeaponSpawnManager : MonoBehaviour
     private float spawnTimer;
     private float nextSpawn;
     int weaponCount;
-    [SerializeField] GameObject weaponprefab;
+    [SerializeField] GameObject[] weaponprefabs;
     [SerializeField] int weaponLimit;
     [SerializeField] float upperBound;
     [SerializeField] float lowerBound;
     [SerializeField] float despawnTime;
     [SerializeField] GameObject tetherlist;
     Transform[] tethertracker;
+    float[] spawnChance = {0.5f, 1.0f};
+    
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public class WeaponSpawnManager : MonoBehaviour
         if (CheckSpawn()) {
             SpawnPickup(Findspawner());
         }
+        
 
     }
 
@@ -52,10 +55,29 @@ public class WeaponSpawnManager : MonoBehaviour
         return tethertracker[randomspot];
     }
 
+    GameObject RollPickupType() {
+        float value = Random.Range(0f, 1f);
+        GameObject obj = weaponprefabs[0];
+        for (int i = 0; i < spawnChance.Length; i++) {
+            if (value <= spawnChance[i]) {
+                return obj = weaponprefabs[i];
+            }
+        }
+        return obj;
+    }
+
     void SpawnPickup (Transform tetherlocation) {
-        GameObject weaponpickup = Instantiate(weaponprefab, tetherlocation.position, tetherlocation.rotation);
+        GameObject weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation);
+        weaponpickup.SetActive(true);
+        
         spawnTimer = 0;
         weaponCount++;
+    }
+
+    public void PickedUp(GameObject obj) {
+        weaponCount--;
+        Destroy(obj);  
+        spawnTimer = 0;
     }
 
 }
