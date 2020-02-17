@@ -14,6 +14,7 @@ public class EnemyMovement : ShooterMovement
     [SerializeField] float maxSteering;
     [SerializeField] float squaredApproachDistance;
     [SerializeField] bool tripleFire;
+    GameObject explosion;
     PlayerMovement target;
     Pathfinder path;
     Vector2 lastSpot;
@@ -43,6 +44,18 @@ public class EnemyMovement : ShooterMovement
         velocity = Vector2.zero;
         reloadedAtTime = 0;
         target = players[0];
+        Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        for (int i = 0; i < allParticles.Length; i++)
+        {
+            if (allParticles[i].name == "TinyExplosion")
+            {
+                explosion = (GameObject) allParticles[i];
+            }
+        }
+        if(explosion == null)
+        {
+            Debug.Log("No boom sticks here.");
+        }
     }
 
     // Update is called once per frame
@@ -51,14 +64,22 @@ public class EnemyMovement : ShooterMovement
         if (health <= 0)
         {
             // Lord have mercy on my soul for this. Will be fixed when we make scoring better.
-            if (lastShooter.name == "Player 1")
+            if (lastShooter)
             {
-                p1ScoreBoard.text = (int.Parse(p1ScoreBoard.text) + 1).ToString();
-            } else if (lastShooter.name == "Player 2")
-            {
-                p2ScoreBoard.text = (int.Parse(p2ScoreBoard.text) + 1).ToString();
+                if (lastShooter.name == "Player 1")
+                {
+                    p1ScoreBoard.text = (int.Parse(p1ScoreBoard.text) + 1).ToString();
+                }
+                else if (lastShooter.name == "Player 2")
+                {
+                    p2ScoreBoard.text = (int.Parse(p2ScoreBoard.text) + 1).ToString();
+                }
             }
-            
+            Gradient grad = new Gradient();
+            grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
+            var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
+            col.color = grad;
+            Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
             Destroy(this.gameObject);
         }
         // Check if the player is in range
