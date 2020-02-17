@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using TMPro;
 
 public class EnemyMovement : ShooterMovement
 {
@@ -12,6 +13,7 @@ public class EnemyMovement : ShooterMovement
     [SerializeField] float moveSpeed;
     [SerializeField] float maxSteering;
     [SerializeField] float squaredApproachDistance;
+    [SerializeField] bool tripleFire;
     PlayerMovement target;
     Pathfinder path;
     Vector2 lastSpot;
@@ -23,7 +25,9 @@ public class EnemyMovement : ShooterMovement
 
     // For shooting
     [SerializeField] float reloadTime;
-    [SerializeField] Text scoreBoard;
+    
+    [SerializeField] TextMeshProUGUI p1ScoreBoard;
+    [SerializeField] TextMeshProUGUI p2ScoreBoard;
     [SerializeField] float xBound;
     [SerializeField] float yBound;
     float reloadedAtTime;
@@ -47,7 +51,14 @@ public class EnemyMovement : ShooterMovement
         if (health <= 0)
         {
             // Lord have mercy on my soul for this. Will be fixed when we make scoring better.
-            scoreBoard.text = (int.Parse(scoreBoard.text) + 1).ToString();
+            if (lastShooter.name == "Player 1")
+            {
+                p1ScoreBoard.text = (int.Parse(p1ScoreBoard.text) + 1).ToString();
+            } else if (lastShooter.name == "Player 2")
+            {
+                p2ScoreBoard.text = (int.Parse(p2ScoreBoard.text) + 1).ToString();
+            }
+            
             Destroy(this.gameObject);
         }
         // Check if the player is in range
@@ -116,7 +127,14 @@ public class EnemyMovement : ShooterMovement
         if (Time.time > reloadedAtTime)
         {
             reloadedAtTime = Time.time + reloadTime;
-            Fire();
+            if (tripleFire)
+            {
+                TripleFire();
+            }
+            else
+            {
+                Fire();
+            }
         }
     }
 

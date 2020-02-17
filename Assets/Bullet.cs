@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
             // But this is an extra precaution. 
             if (collision.gameObject != shooter || escapedShooter)
             {
-                collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage);
+                collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                 Destroy(this.gameObject);
             }
         }
@@ -93,7 +93,7 @@ public class Bullet : MonoBehaviour
                 string layerName = LayerMask.LayerToName(collision.gameObject.layer);
                 if (layerName == "Enemy" || layerName == "Player")
                 {
-                    collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage);
+                    collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                     Destroy(this.gameObject);
                 }
                 if (layerName == "Wall")
