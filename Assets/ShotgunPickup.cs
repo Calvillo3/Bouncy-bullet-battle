@@ -11,7 +11,7 @@ public class ShotgunPickup : MonoBehaviour
     }
 
     void Update() {
-        transform.Rotate(0, 0, 100 * Time.deltaTime);
+        //transform.Rotate(0, 0, 100 * Time.deltaTime);
     }
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D col) {
