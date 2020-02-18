@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1560598388201696346}
   - component: {fileID: 5168147347414101289}
   m_Layer: 0
-  m_Name: AKPickup 1
+  m_Name: AKPickup White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

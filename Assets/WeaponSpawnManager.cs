@@ -67,7 +67,7 @@ public class WeaponSpawnManager : MonoBehaviour
     }
 
     void SpawnPickup (Transform tetherlocation) {
-        GameObject weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation);
+        GameObject weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation * Quaternion.Euler(0, 0, 45));
         weaponpickup.SetActive(true);
         
         spawnTimer = 0;
