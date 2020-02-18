@@ -143,12 +143,16 @@ public class PlayerMovement : ShooterMovement
         currShotDelay += Time.deltaTime;
     }
     public void RunAK() {
-        bulletType[0] = false;
+        for (int i = 0; i < bulletType.Length; i++) {
+            bulletType[i] = false;
+        }
         bulletType[1] = true;
         ammoCount = 30;
     }
     public void RunShotgun() {
-        bulletType[0] = false;
+         for (int i = 0; i < bulletType.Length; i++) {
+            bulletType[i] = false;
+        }
         bulletType[2] = true;
         ammoCount = 10;
     }
