@@ -9,7 +9,7 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] float moveSpeed;
     [SerializeField] float turnSpeed;
     GameObject explosion;
-    bool[] bulletType = {true, false, false}; //Holds array saying which bullet type is on, currently
+    public bool[] bulletType = {true, false, false}; //Holds array saying which bullet type is on, currently
                                         // {default ,AK, Shotgun}
 
     [SerializeField] float[] shootDelay;
