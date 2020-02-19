@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float bounds;
-    GameObject explosion;
+    [SerializeField] GameObject explosion;
     CircleCollider2D coll;
     Rigidbody2D rb;
 
@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
     Vector2 direction;
     int damage;
     int bounceCount;
+
+    Gradient grad;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,10 @@ public class Bullet : MonoBehaviour
 
         rb.transform.rotation = Quaternion.AngleAxis(rb.rotation, Vector3.forward);
         direction = rb.transform.rotation * Vector2.up;
+
+        grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
+        GetComponent<TrailRenderer>().colorGradient = grad;
     }
 
     // Update is called once per frame
@@ -149,6 +155,9 @@ public class Bullet : MonoBehaviour
             direction = direction - 2 * Vector2.Dot(direction, normal) * normal;
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         }
+        var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
+        col.color = grad;
+        Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
 
     }
 }
