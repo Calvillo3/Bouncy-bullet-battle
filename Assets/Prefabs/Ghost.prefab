@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  reviveTime: 1
+  reviveTime: 0.5
   blinkPeriod: 0.25

@@ -21,6 +21,13 @@ public class PlayerMovement : ShooterMovement
     bool dead = false;
     float maxHealth;
 
+    [SerializeField] float invincibleIncrement;
+    [SerializeField] float blinkPeriod;
+    bool invincible = false;
+    float invincibleUntilTime;
+    float nextBlink;
+    SpriteRenderer ren;
+
     Vector2 movement;
 
     float turn;
@@ -36,6 +43,9 @@ public class PlayerMovement : ShooterMovement
     {
         maxHealth = health;
         currShotDelay = 0;
+        invincibleUntilTime = 0;
+        nextBlink = 0;
+        ren = GetComponent<SpriteRenderer>();
 
         Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
         for (int i = 0; i < allParticles.Length; i++)
@@ -50,7 +60,26 @@ public class PlayerMovement : ShooterMovement
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+
+        if (Input.GetAxisRaw("Start") == 1)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (dead) { return; }
+
+        if (invincible)
+        {
+            if (Time.time > invincibleUntilTime)
+            {
+                invincible = false;
+            }
+            else
+            {
+                Blink();
+            }
+        }
+        if (health <= 0 && !invincible)
         {
             // Put a ghost where we died and activate it
             if (!dead)
@@ -70,11 +99,6 @@ public class PlayerMovement : ShooterMovement
             //Destroy(this.gameObject);
         }
 
-        if (Input.GetAxisRaw("Start") == 1)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
         movement.y = Input.GetAxisRaw("VerticalPlayer" + playerNum) * -1;
         movement = Vector2.ClampMagnitude(movement, 1);
@@ -176,6 +200,17 @@ public class PlayerMovement : ShooterMovement
     public void Revive()
     {
         dead = false;
+        invincible = true;
+        invincibleUntilTime = Time.time + invincibleIncrement; 
         health = maxHealth;
+    }
+
+    void Blink()
+    {
+        if (Time.time > nextBlink)
+        {
+            ren.enabled = !ren.enabled;
+            nextBlink = Time.time + blinkPeriod;
+        }
     }
 }

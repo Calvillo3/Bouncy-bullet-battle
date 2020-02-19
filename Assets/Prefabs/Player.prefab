@@ -182,12 +182,15 @@ MonoBehaviour:
   lastShooter: {fileID: 0}
   moveSpeed: 3
   turnSpeed: 300
+  bulletType: 010000
   shootDelay:
   - 0.2
   - 0.125
   - 0.5
   ghost: {fileID: 0}
   playerNum: 0
+  invincibleIncrement: 1
+  blinkPeriod: 0.25
   ammoCount: 0
 --- !u!50 &1875095814466082769
 Rigidbody2D:
@@ -225,4 +228,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
