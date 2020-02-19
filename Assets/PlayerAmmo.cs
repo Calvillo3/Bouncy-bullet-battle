@@ -9,7 +9,7 @@ public class PlayerAmmo : MonoBehaviour
     // Start is called before the first frame update
    
     [SerializeField] GameObject player;
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI ammoText;
     public Image gunImage;
     [SerializeField] Sprite akSprite;
     [SerializeField] Sprite shotgunSprite;
@@ -26,7 +26,7 @@ public class PlayerAmmo : MonoBehaviour
     {
         if (player.GetComponent<PlayerMovement>().ammoCount > 0)
         {
-            scoreText.text = playerMovement.ammoCount.ToString();
+            ammoText.text = playerMovement.ammoCount.ToString();
             if (playerMovement.bulletType[1])
             {
                 gunImage.sprite = akSprite;
@@ -39,7 +39,7 @@ public class PlayerAmmo : MonoBehaviour
         else
         {
             gunImage.sprite = pistolSprite;
-            scoreText.text = "\u221E";
+            ammoText.text = "\u221E";
         }
     }
 }

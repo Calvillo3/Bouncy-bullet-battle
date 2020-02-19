@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 10318174}
-  scoreText: {fileID: 567214003}
+  ammoText: {fileID: 567214003}
   gunImage: {fileID: 135452377}
   akSprite: {fileID: 21300000, guid: d12b1fdec9ec3d6428fa6d7de2ca7f72, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 5624a31abc8da1a4195143c7a806cdee, type: 3}
@@ -711,7 +711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -135, y: -9.99999}
+  m_AnchoredPosition: {x: -135, y: -10}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &135452377
@@ -7434,7 +7434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 902112042}
-  scoreText: {fileID: 611510490}
+  ammoText: {fileID: 1771627817}
   gunImage: {fileID: 1323214235}
   akSprite: {fileID: 21300000, guid: d12b1fdec9ec3d6428fa6d7de2ca7f72, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 5624a31abc8da1a4195143c7a806cdee, type: 3}

@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float bounds;
-
+    GameObject explosion;
     CircleCollider2D coll;
     Rigidbody2D rb;
 
