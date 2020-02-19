@@ -14,10 +14,12 @@ public class Bullet : MonoBehaviour
     bool escapedShooter;
     Vector2 direction;
     int damage;
+    int bounceCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        bounceCount = 0;
         coll = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -137,10 +139,17 @@ public class Bullet : MonoBehaviour
     // how they are oriented when the bounce.
     void Bounce()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(rb.position, coll.radius, direction, speed * Time.fixedDeltaTime, LayerMask.GetMask("Wall"));
-        Vector2 normal = hit.normal;
-        direction = direction - 2 * Vector2.Dot(direction, normal) * normal;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (bounceCount >= 4) {
+            Destroy(gameObject);
+        }
+        else {
+            bounceCount++;
+            RaycastHit2D hit = Physics2D.CircleCast(rb.position, coll.radius, direction, speed * Time.fixedDeltaTime, LayerMask.GetMask("Wall"));
+            Vector2 normal = hit.normal;
+            direction = direction - 2 * Vector2.Dot(direction, normal) * normal;
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }
+
     }
 }
 
