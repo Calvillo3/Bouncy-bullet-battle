@@ -15,7 +15,7 @@ public class WallMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.RotateAround(transform.position, Vector3.forward, incrementAngle);
     }
