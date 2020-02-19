@@ -187,7 +187,7 @@ public class EnemyMovement : ShooterMovement
             // Technically by using a linecast instead of a raycast we might try to move into a space partially blocked
             // But most of the time the rigidbody mechanics will handle this and just push the enemy along
             // This will cause problems if we have a narrow path with a small opening, but let's not have those
-            RaycastHit2D hit = Physics2D.Linecast(steps[nextStep + 1], rb.position);
+            RaycastHit2D hit = Physics2D.Linecast(steps[nextStep + 1], rb.position, LayerMask.GetMask("Wall", "Enemy"));
             if (hit.collider == coll || !hit)
             {
                 nextStep++;
@@ -236,7 +236,7 @@ public class EnemyMovement : ShooterMovement
     // Use remaining movement to move away from other colliders
     Vector2 MovementAway(Vector2 oldVelocity)
     {
-        Collider2D[] closeColls = Physics2D.OverlapCircleAll(rb.position, coll.radius * 2);
+        Collider2D[] closeColls = Physics2D.OverlapCircleAll(rb.position, coll.radius * 2, LayerMask.GetMask("Wall", "Enemy"));
         if (closeColls.Length > 1)
         {
             Vector2 minDist = Vector2.one * Mathf.Infinity;
