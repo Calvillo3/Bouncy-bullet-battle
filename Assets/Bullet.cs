@@ -87,6 +87,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<Bullet>() != null)
         {
+            Poof();
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
@@ -112,9 +113,9 @@ public class Bullet : MonoBehaviour
         
         if (collision.gameObject != shooter)
         {
+            string layerName = LayerMask.LayerToName(collision.gameObject.layer);
             if (!escapedShooter)
             {
-                string layerName = LayerMask.LayerToName(collision.gameObject.layer);
                 if (layerName == "Enemy")
                 {
                     collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
@@ -133,7 +134,7 @@ public class Bullet : MonoBehaviour
             }
             // Unity seems to update the collider into not being a trigger on a delay
             // So in this case, it means we hit a wall and should bounce as if we were not a trigger
-            else
+            else if (layerName == "Wall")
             {
                 Bounce();
             }
@@ -155,10 +156,15 @@ public class Bullet : MonoBehaviour
             direction = direction - 2 * Vector2.Dot(direction, normal) * normal;
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         }
+        Poof();
+
+    }
+
+    void Poof()
+    {
         var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
         col.color = grad;
         Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
-
     }
 }
 
