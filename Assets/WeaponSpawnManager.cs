@@ -62,10 +62,6 @@ public class WeaponSpawnManager : MonoBehaviour
         GameObject obj = weaponprefabs[0];
         for (int i = 0; i < spawnChance.Length; i++) {
             if (value <= spawnChance[i]) {
-                if(i == 2)
-                {
-                    rotate = false;
-                }
                 return obj = weaponprefabs[i];
             }
         }
