@@ -78,6 +78,7 @@ public class EnemyMovement : ShooterMovement
             Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
             Destroy(this.gameObject);
         }
+        FacePlayer();
         // Check if the player is in range
         if (CanShoot())
         {
@@ -102,6 +103,15 @@ public class EnemyMovement : ShooterMovement
             CalcNextStep();
             MoveWithSteering();
         }
+    }
+
+    private void FacePlayer()
+    {
+        Vector3 targetDir = target.rb.position - rb.position;
+        float angle = -90f + Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+        // Frustatingly SetRotation seems to affect the next frame, so we want to be updating our aim
+        // Even if we are not currently shooting
+        rb.SetRotation(angle);
     }
 
     // If a player is not in range we might want to see if another player is closer.
@@ -136,11 +146,6 @@ public class EnemyMovement : ShooterMovement
     // We don't want to constantly shoot so we will simulate reloading
     private void ShootPeriodically()
     {
-        Vector3 targetDir = target.rb.position - rb.position;
-        float angle = -90f + Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-        // Frustatingly SetRotation seems to affect the next frame, so we want to be updating our aim
-        // Even if we are only shooting infrequently
-        rb.SetRotation(angle); 
         if (Time.time > reloadedAtTime)
         {
             reloadedAtTime = Time.time + reloadTime;
@@ -228,9 +233,6 @@ public class EnemyMovement : ShooterMovement
 
 
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-        // If the enemy shoots as soon as they get into position, SetRotation won't have taken affect yet
-        // Thus we need to build in some time for the rigidbody to aim towards the player
-        reloadedAtTime = Time.time + reloadTime;
     }
 
     // Use remaining movement to move away from other colliders
