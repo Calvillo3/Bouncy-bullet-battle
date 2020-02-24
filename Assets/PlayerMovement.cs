@@ -50,7 +50,7 @@ public class PlayerMovement : ShooterMovement
         Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
         for (int i = 0; i < allParticles.Length; i++)
         {
-            if (allParticles[i].name == "TinyExplosion")
+            if (allParticles[i].name == "PlayerExplosion")
             {
                 explosion = (GameObject)allParticles[i];
             }
