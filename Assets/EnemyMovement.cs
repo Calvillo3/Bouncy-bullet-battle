@@ -82,18 +82,21 @@ public class EnemyMovement : ShooterMovement
         // Check if the player is in range
         if (CanShoot())
         {
-            // This happens every frame, but the function sets its own timer
-            ShootPeriodically();
             // Even if the player is in range, lets get closer. 
             // This helps prevent enemies from blocking other enemies.
             if((target.rb.position - rb.position).sqrMagnitude > squaredApproachDistance)
             {
+                // This happens every frame, but the function sets its own timer
                 UpdatePath();
                 // Sometimes enemies will have crowded off a player, cutting off a path to them
                 // For now we will wait, but potentially we should do something else in the future
                 if (steps == null) return;
                 CalcNextStep();
                 MoveWithSteering();
+            }
+            else
+            {
+                ShootPeriodically();
             }
         }
         else
