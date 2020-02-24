@@ -9,27 +9,62 @@ public class Spawner : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] EnemyMovement[] enemies;
     [SerializeField] float timeInBetween;
+    [SerializeField] int waveSelector;
     float nextSpawnTime;
     // Start is called before the first frame update
     float currtime;
     Transform[] spawners;
     GameObject currspawner;
+
     int[][] waveEnemies = new int[][]
     {
+        new int[] { }
+    };
+
+    int[][] waveEnemies0 = new int[][]
+    {
         new int[] { 0 },
+        new int[] { 0, 0},
+        new int[] { 0, 0, 0},
+        new int[] { 0, 0, 0, 0,},
+        new int[] { 0, 0, 0, 0, 0},
+    };
+
+    int[][] waveEnemies1 = new int[][]
+    {
+        new int[] { 0 },
+        new int[] { 0, 0, 0},
+        new int[] { 1, 1 },
+        new int[] { 0, 0, 0, 1, 1},
+        new int[] { 0, 0, 0, 1, 1, 1, 1},
+        new int[] { 2, 2, 2},
+        new int[] { 0, 0, 0, 0, 0, 1, 1, 2, 2 },
+        new int[] { 2, 2, 2, 2, 2, 2},
+        new int[] { 3, 3, 3, 3 },
+        new int[] { 0, 0, 1, 1, 2, 2, 3, 3},
+        new int[] { 0, 1, 2, 3, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 1, 2, 3}
+    };
+
+    int[][] waveEnemies2 = new int[][]
+    {
+        new int[] { 0, 0 },
         new int[] { 0, 0, 0, 0, 0 },
         new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1 },
         new int[] { 1, 1, 2, 2 },
         new int[] { 1, 2, 3, 3, 0, 0, 0 },
         new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-        new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2},
         new int[] { 0, 0, 0, 0, 2, 2, 2, 2, 2 },
         new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 },
         new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3 },
-        new int[] { 0, 1, 2, 3, 0, 1, 2, 3, 0, 0, 1, 2, 3, 0, 1, 2, 3}
+        new int[] { 3, 1, 2, 3, 3, 1, 2, 3, 0, 3, 1, 2, 3, 3, 1, 2, 3}
     };
+
+
     void Start()
     {
+        int[][][] waveOptions = new int[][][] { waveEnemies0, waveEnemies1, waveEnemies2 };
+        waveEnemies = waveOptions[waveSelector];
         nextSpawnTime = 0;
         spawners = gameObject.GetComponentsInChildren<Transform>();
         currtime = 2;

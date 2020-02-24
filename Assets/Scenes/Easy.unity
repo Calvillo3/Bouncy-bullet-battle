@@ -594,7 +594,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &42922907
 Transform:
   m_ObjectHideFlags: 0
@@ -783,7 +782,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &148699198
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +832,6 @@ MonoBehaviour:
   - {fileID: 1652275893}
   - {fileID: 42170891}
   timeInBetween: 3
-  waveSelector: 2
 --- !u!4 &166553164
 Transform:
   m_ObjectHideFlags: 0
@@ -2187,7 +2184,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &819558800
 Transform:
   m_ObjectHideFlags: 0
@@ -7565,7 +7561,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &1054909843
 Transform:
   m_ObjectHideFlags: 0
@@ -8784,7 +8779,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &1633219298
 Transform:
   m_ObjectHideFlags: 0
@@ -14781,7 +14775,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   enemies: []
   timeInBetween: 16
-  waveSelector: 0
 --- !u!4 &2083248509
 Transform:
   m_ObjectHideFlags: 0
