@@ -15,12 +15,14 @@ public class WeaponSpawnManager : MonoBehaviour
     [SerializeField] float despawnTime;
     [SerializeField] GameObject tetherlist;
     Transform[] tethertracker;
+    bool rotate = true;
     float[] spawnChance = {0.33f, 0.67f, 1.0f};
     
 
     // Start is called before the first frame update
     void Start()
     {
+        rotate = true;
         spawnTimer = 0;
         weaponCount = 0;
         tethertracker = tetherlist.GetComponentsInChildren<Transform>();
@@ -60,6 +62,10 @@ public class WeaponSpawnManager : MonoBehaviour
         GameObject obj = weaponprefabs[0];
         for (int i = 0; i < spawnChance.Length; i++) {
             if (value <= spawnChance[i]) {
+                if(i == 2)
+                {
+                    rotate = false;
+                }
                 return obj = weaponprefabs[i];
             }
         }
@@ -67,7 +73,16 @@ public class WeaponSpawnManager : MonoBehaviour
     }
 
     void SpawnPickup (Transform tetherlocation) {
-        GameObject weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation * Quaternion.Euler(0, 0, 45));
+        GameObject weaponpickup;
+        if (rotate)
+        {
+            weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation * Quaternion.Euler(0, 0, 45));
+        }
+        else
+        {
+            weaponpickup = Instantiate(RollPickupType(), tetherlocation.position, tetherlocation.rotation * Quaternion.Euler(0, 0, 0));
+            rotate = true;
+        }
         weaponpickup.SetActive(true);
         
         spawnTimer = 0;
