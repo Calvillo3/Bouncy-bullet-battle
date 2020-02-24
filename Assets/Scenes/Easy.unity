@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 6977311057941796913, guid: 9fcddc42aec64284a8d0dd289e4acb01,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.029988196
+      value: 0.98333335
       objectReference: {fileID: 0}
     - target: {fileID: 6977311057941796915, guid: 9fcddc42aec64284a8d0dd289e4acb01,
         type: 3}
@@ -412,6 +412,11 @@ PrefabInstance:
       propertyPath: p2ScoreBoard
       value: 
       objectReference: {fileID: 1849681948}
+    - target: {fileID: 6977311057941796915, guid: 9fcddc42aec64284a8d0dd289e4acb01,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6977311057941796916, guid: 9fcddc42aec64284a8d0dd289e4acb01,
         type: 3}
       propertyPath: m_Name
