@@ -76,6 +76,7 @@ public class PlayerMovement : ShooterMovement
             }
             else
             {
+                health = maxHealth;
                 Blink();
             }
         }
