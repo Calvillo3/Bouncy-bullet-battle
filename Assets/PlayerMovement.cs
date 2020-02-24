@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,21 @@ public class PlayerMovement : ShooterMovement
     bool readyToShoot = true;
     bool dead = false;
     float maxHealth;
+    GameObject shield;
 
     [SerializeField] float invincibleIncrement;
+
+    public void AddCircle()
+    {
+        shield.SetActive(true);
+        health = 2;
+    }
+
+    public void RemoveCircle()
+    {
+        shield.SetActive(false);
+    }
+
     [SerializeField] float blinkPeriod;
     bool invincible = false;
     float invincibleUntilTime;
@@ -47,7 +61,10 @@ public class PlayerMovement : ShooterMovement
         nextBlink = 0;
         ren = GetComponent<SpriteRenderer>();
 
-        Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        shield = transform.Find("Shield").gameObject;
+        shield.SetActive(false);
+
+        UnityEngine.Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
         for (int i = 0; i < allParticles.Length; i++)
         {
             if (allParticles[i].name == "PlayerExplosion")
@@ -79,6 +96,10 @@ public class PlayerMovement : ShooterMovement
                 health = maxHealth;
                 Blink();
             }
+        }
+        if(health <= 1 && shield.active)
+        {
+            shield.SetActive(false);
         }
         if (health <= 0 && !invincible)
         {

@@ -15,7 +15,7 @@ public class WeaponSpawnManager : MonoBehaviour
     [SerializeField] float despawnTime;
     [SerializeField] GameObject tetherlist;
     Transform[] tethertracker;
-    float[] spawnChance = {0.5f, 1.0f};
+    float[] spawnChance = {0.33f, 0.67f, 1.0f};
     
 
     // Start is called before the first frame update
