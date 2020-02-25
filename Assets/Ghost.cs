@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ghost : MonoBehaviour
 {
@@ -12,12 +13,19 @@ public class Ghost : MonoBehaviour
     [SerializeField] float blinkPeriod;
     float nextBlink;
     SpriteRenderer ren;
+    [SerializeField] float colorFade;
+    [SerializeField] Image progress;
 
 
     // Start is called before the first frame update
     void Start()
     {
         ren = GetComponent<SpriteRenderer>();
+        ren.color = player.GetComponent<SpriteRenderer>().color;
+        progress.color = ren.color;
+        ren.color = Color.Lerp(ren.color, Color.white, colorFade);
+
+
         timeEntered = Mathf.Infinity;
         nextBlink = 0;
     }
@@ -25,6 +33,7 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        progress.fillAmount = Mathf.Clamp((Time.time - timeEntered) / reviveTime, 0, 1);
         if (Time.time > timeEntered + reviveTime)
         {
             Blink();
