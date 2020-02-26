@@ -46,6 +46,7 @@ public class NextLevelPortal : MonoBehaviour
             {
                 playerInside = null;
                 timeStarted = Mathf.Infinity;
+                CheckForPlayersInside(); // In case a different player inside does have particles
             }
         }
     }
