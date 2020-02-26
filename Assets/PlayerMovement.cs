@@ -23,6 +23,8 @@ public class PlayerMovement : ShooterMovement
     float maxHealth;
     GameObject shield;
 
+    public int numOfDustParticles = 0;
+
     [SerializeField] float invincibleIncrement;
 
     public void AddCircle()
