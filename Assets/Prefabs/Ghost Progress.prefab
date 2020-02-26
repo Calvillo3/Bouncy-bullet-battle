@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4188562046044145364}
   - component: {fileID: 8933157546783844879}
   m_Layer: 1
-  m_Name: Canvas
+  m_Name: Ghost Progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &8920341172000661035
 MonoBehaviour:
