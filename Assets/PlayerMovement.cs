@@ -97,7 +97,7 @@ public class PlayerMovement : ShooterMovement
                 Blink();
             }
         }
-        if(health <= 1 && shield.active)
+        if(health <= 1 && shield.activeSelf)
         {
             shield.SetActive(false);
         }
