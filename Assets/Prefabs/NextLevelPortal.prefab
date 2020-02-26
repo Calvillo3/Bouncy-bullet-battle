@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c0fba48e1e4ca4290dddc210a3423f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depositTime: 0.5
+  depositTime: 1
   progress: {fileID: 697384731571201462}
   particlesNeeded: 10
   display: {fileID: 986016439835374354}

@@ -80,9 +80,9 @@ public class EnemyMovement : ShooterMovement
             grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
             var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
             col.color = grad;
-            var col2 = glowPortalDust.GetComponent<ParticleSystem>().colorOverLifetime;
-            col2.color = grad;
-            var col3 = glowPortalDust.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
+            // var col2 = glowPortalDust.GetComponent<ParticleSystem>().colorOverLifetime;
+            // col2.color = grad;
+            // var col3 = glowPortalDust.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
             Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
             Instantiate(glowPortalDust, transform.position, transform.rotation).SetActive(true);
             Destroy(this.gameObject);

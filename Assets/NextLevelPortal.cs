@@ -19,6 +19,7 @@ public class NextLevelPortal : MonoBehaviour
     {
         timeStarted = Mathf.Infinity;
         coll = GetComponent<CircleCollider2D>();
+        display.text = particlesNeeded.ToString();
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class NextLevelPortal : MonoBehaviour
             particlesNeeded--;
             if (particlesNeeded < 1)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             display.text = particlesNeeded.ToString();
             // Check if the player can still deposit more
@@ -67,6 +68,7 @@ public class NextLevelPortal : MonoBehaviour
         {
             timeStarted = Mathf.Infinity;
             playerInside = null;
+            CheckForPlayersInside(); // In case a different player inside does have particles
         }
     }
 
