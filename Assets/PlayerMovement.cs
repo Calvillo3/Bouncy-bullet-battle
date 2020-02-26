@@ -22,8 +22,9 @@ public class PlayerMovement : ShooterMovement
     bool dead = false;
     float maxHealth;
     GameObject shield;
+    CircleCollider2D coll;
 
-    public int numOfDustParticles = 0;
+    private List<GlowParticleScript> claimedParticles = new List<GlowParticleScript>();
 
     [SerializeField] float invincibleIncrement;
 
@@ -62,6 +63,7 @@ public class PlayerMovement : ShooterMovement
         invincibleUntilTime = 0;
         nextBlink = 0;
         ren = GetComponent<SpriteRenderer>();
+        coll = GetComponent<CircleCollider2D>();
 
         shield = transform.Find("Shield").gameObject;
         shield.SetActive(false);
@@ -228,6 +230,33 @@ public class PlayerMovement : ShooterMovement
         invincibleUntilTime = Time.time + invincibleIncrement; 
         health = maxHealth;
     }
+
+    public void ClaimParticle(GlowParticleScript newPart)
+    {
+        claimedParticles.Add(newPart);
+        Collider2D[] newColls = Physics2D.OverlapCircleAll(rb.position, coll.radius);
+        foreach (Collider2D newColl in newColls)
+        {
+            NextLevelPortal potentialPortal = newColl.gameObject.GetComponent<NextLevelPortal>();
+            if (potentialPortal)
+            {
+                potentialPortal.CheckForPlayersInside();
+            }
+        }
+    }
+
+    public void LoseParticle()
+    {
+        GlowParticleScript oldParticle = claimedParticles[0];
+        claimedParticles.RemoveAt(0);
+        Destroy(oldParticle.gameObject);
+    }
+
+    public int ParticleCount()
+    {
+        return claimedParticles.Count;
+    }
+
 
     void Blink()
     {
