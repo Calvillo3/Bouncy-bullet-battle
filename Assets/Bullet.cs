@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     GameObject shooter;
     bool escapedShooter;
     Vector2 direction;
+    Vector2 lastPos;
     int damage;
     int bounceCount;
 
@@ -24,6 +25,7 @@ public class Bullet : MonoBehaviour
         bounceCount = 0;
         coll = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        lastPos = Mathf.Infinity * Vector2.one;
 
         escapedShooter = false;
         damage = 1;
@@ -48,7 +50,14 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if ((lastPos - rb.position).magnitude / (speed * Time.fixedDeltaTime) < .9)
+        {
+            Poof();
+            Destroy(this.gameObject);
+            return;
+        }
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        lastPos = rb.position;
     }
 
     //Guns that shoot multiple bullets at once should not destroy eachother
@@ -150,6 +159,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         else {
+            lastPos = Mathf.Infinity * Vector2.one;
             bounceCount++;
             RaycastHit2D hit = Physics2D.CircleCast(rb.position, coll.radius, direction, speed * Time.fixedDeltaTime, LayerMask.GetMask("Wall"));
             Vector2 normal = hit.normal;
