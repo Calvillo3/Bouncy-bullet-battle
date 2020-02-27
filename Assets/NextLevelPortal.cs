@@ -93,7 +93,8 @@ public class NextLevelPortal : MonoBehaviour
 
     public void CheckForPlayersInside()
     {
-        Collider2D[] potentialPlayers = Physics2D.OverlapCircleAll(transform.position, coll.radius);
+        // Sadly coll.raidus is off if the scale is altered. We will use the x value, but the y value should be the same since circle
+        Collider2D[] potentialPlayers = Physics2D.OverlapCircleAll(transform.position, coll.radius * transform.localScale.x);
         foreach (Collider2D potentialPlayer in potentialPlayers)
         {
             ProcessCollider(potentialPlayer);
