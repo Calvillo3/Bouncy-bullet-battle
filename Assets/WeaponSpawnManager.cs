@@ -9,6 +9,7 @@ public class WeaponSpawnManager : MonoBehaviour
     private float nextSpawn;
     int weaponCount;
     [SerializeField] GameObject[] weaponprefabs;
+    [SerializeField] float[] spawnChance;
     [SerializeField] int weaponLimit;
     [SerializeField] float upperBound;
     [SerializeField] float lowerBound;
@@ -16,7 +17,6 @@ public class WeaponSpawnManager : MonoBehaviour
     [SerializeField] GameObject tetherlist;
     Transform[] tethertracker;
     bool rotate = true;
-    float[] spawnChance = {0.33f, 0.67f, 1.0f};
     
 
     // Start is called before the first frame update
@@ -26,7 +26,6 @@ public class WeaponSpawnManager : MonoBehaviour
         spawnTimer = 0;
         weaponCount = 0;
         tethertracker = tetherlist.GetComponentsInChildren<Transform>();
-
     }
 
     // Update is called once per frame

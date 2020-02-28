@@ -8444,6 +8444,9 @@ MonoBehaviour:
   weaponprefabs:
   - {fileID: 9162184765627941298, guid: 88d9c9fe6849ef94baf043418ad670cd, type: 3}
   - {fileID: 9162184765627941298, guid: acafc8d7a146a3747b07c1a9ade6fe64, type: 3}
+  spawnChance:
+  - 0.5
+  - 0.5
   weaponLimit: 1
   upperBound: 7
   lowerBound: 14
