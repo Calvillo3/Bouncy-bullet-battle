@@ -105,24 +105,9 @@ public class PlayerMovement : ShooterMovement
         {
             shield.SetActive(false);
         }
-        if (health <= 0 && !invincible)
+        if (health <= 0 && !invincible && !dead)
         {
-            // Put a ghost where we died and activate it
-            if (!dead)
-            {
-                Gradient grad = new Gradient();
-                grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
-                var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
-                col.color = grad;
-                Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
-                ghost.gameObject.transform.position = rb.position;
-                ghost.gameObject.SetActive(true);
-            }
-            // The player goes to heaven. 
-            // Which is a box far away
-            rb.position = 21.5f * Vector2.up;
-            dead = true;
-            //Destroy(this.gameObject);
+            Die();
         }
 
         movement.x = Input.GetAxisRaw("HorizontalPlayer" + playerNum);
@@ -255,6 +240,30 @@ public class PlayerMovement : ShooterMovement
     public int ParticleCount()
     {
         return claimedParticles.Count;
+    }
+
+    private void Die()
+    {
+        // Explode!
+        Gradient grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
+        var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
+        col.color = grad;
+        Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
+
+        // Put a ghost where we died and put the player in "heaven," a box far away, where the ghost was
+        Vector2 ghostPos = ghost.gameObject.transform.position;
+        ghost.gameObject.transform.position = rb.position;
+        ghost.gameObject.SetActive(true);
+        rb.position = ghostPos;
+
+        // Remove all the glow particles on the player
+        while (ParticleCount() > 0)
+        {
+            LoseParticle();
+        }
+
+        dead = true;
     }
 
 
