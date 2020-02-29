@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6869054154700055230}
   - component: {fileID: 7727525164267048920}
   m_Layer: 10
-  m_Name: New Sprite Mask
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +270,8 @@ MonoBehaviour:
   - 0.5
   ghost: {fileID: 0}
   playerNum: 0
+  shield: {fileID: 9136996878362926015}
+  shieldMask: {fileID: 1105844654720548139}
   invincibleIncrement: 1
   blinkPeriod: 0.1
   ammoCount: 0

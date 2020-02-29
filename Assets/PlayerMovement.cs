@@ -21,24 +21,14 @@ public class PlayerMovement : ShooterMovement
     bool readyToShoot = true;
     bool dead = false;
     float maxHealth;
-    GameObject shield;
     CircleCollider2D coll;
+
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject shieldMask;
 
     private List<GlowParticleScript> claimedParticles = new List<GlowParticleScript>();
 
     [SerializeField] float invincibleIncrement;
-
-    public void AddCircle()
-    {
-        shield.SetActive(true);
-        health = 2;
-    }
-
-    public void RemoveCircle()
-    {
-        shield.SetActive(false);
-    }
-
     [SerializeField] float blinkPeriod;
     bool invincible = false;
     float invincibleUntilTime;
@@ -64,9 +54,7 @@ public class PlayerMovement : ShooterMovement
         nextBlink = 0;
         ren = GetComponent<SpriteRenderer>();
         coll = GetComponent<CircleCollider2D>();
-
-        shield = transform.Find("Shield").gameObject;
-        shield.SetActive(false);
+        RemoveCircle();
 
         UnityEngine.Object[] allParticles = Resources.FindObjectsOfTypeAll(typeof(GameObject));
         for (int i = 0; i < allParticles.Length; i++)
@@ -103,7 +91,7 @@ public class PlayerMovement : ShooterMovement
         }
         if(health <= 1 && shield.activeSelf)
         {
-            shield.SetActive(false);
+            RemoveCircle();
         }
         if (health <= 0 && !invincible && !dead)
         {
@@ -275,4 +263,18 @@ public class PlayerMovement : ShooterMovement
             nextBlink = Time.time + blinkPeriod;
         }
     }
+
+    public void AddCircle()
+    {
+        shield.SetActive(true);
+        shieldMask.SetActive(true);
+        health = 2;
+    }
+
+    public void RemoveCircle()
+    {
+        shield.SetActive(false);
+        shieldMask.SetActive(false);
+    }
+
 }
