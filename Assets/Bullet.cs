@@ -130,6 +130,16 @@ public class Bullet : MonoBehaviour
                     collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                     Destroy(this.gameObject);
                 }
+                // For the cruel case where you go right up against your ally and shoot
+                if (layerName == "Player")
+                {
+                    PlayerMovement playerHit = collision.gameObject.GetComponent<PlayerMovement>();
+                    if (playerHit != shooter)
+                    {
+                        playerHit.TakeDamage(damage, shooter);
+                        Destroy(this.gameObject);
+                    }
+                }
                 if (layerName == "Wall")
                 {
                     shooter.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
