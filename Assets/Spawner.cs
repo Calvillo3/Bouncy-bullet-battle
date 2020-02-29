@@ -64,6 +64,12 @@ public class Spawner : MonoBehaviour
         },
     };
 
+    Dictionary<string, int[]> hardCodedEnemies = new Dictionary<string, int[]>
+    {
+        { "1.2", new int[] { 1 }},
+        { "1.3", new int[] { 2 }},
+        { "1.4", new int[] { 3 }},
+    };
 
 
 
@@ -134,13 +140,23 @@ public class Spawner : MonoBehaviour
             newFoe.gameObject.SetActive(true);
         } */
         if (currtime > timeInBetween) {
-            int waveNumber = int.Parse(waveText.text.Substring(6));
-            waveText.text = "Wave: " + (waveNumber + 1).ToString();
+            int waveNumber = int.Parse(waveText.text.Substring(6)) + 1;
+            waveText.text = "Wave: " + (waveNumber).ToString();
             currtime = 0;
 
             // Previously waveEnemies referred to an array comprised of waves comprised of enemies
             // Now this only refers to the enemies for a single wave
-            int[] waveEnemies = GenerateWave(waveSelector, waveNumber); //waveSelector is like level for now
+            // This wave will either be hard coded or will need to be generated
+            string waveName = waveSelector.ToString() + "." + waveNumber.ToString();
+            int[] waveEnemies;
+            if (hardCodedEnemies.ContainsKey(waveName))
+            {
+                waveEnemies = hardCodedEnemies[waveName];
+            }
+            else
+            {
+                waveEnemies = GenerateWave(waveSelector, waveNumber); //waveSelector is like level for now
+            }
 
             for (int i = 0; i < waveEnemies.Length; i++) {
                 EnemyMovement newFoe = Instantiate(enemies[waveEnemies[i]], spawners[i%spawners.Length].position, Quaternion.identity);
