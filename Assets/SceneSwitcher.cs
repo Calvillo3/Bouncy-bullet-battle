@@ -21,7 +21,7 @@ public class SceneSwitcher : MonoBehaviour
     void Start()
     {
         button1.onClick.AddListener(RunGame);
-        button2.onClick.AddListener(RunOptions);
+        button2.onClick.AddListener(RunTutorial);
         button3.onClick.AddListener(QuitGame);
         button4.onClick.AddListener(PlayCoop);
         button6.onClick.AddListener(PlayEasy);
@@ -88,7 +88,8 @@ public class SceneSwitcher : MonoBehaviour
        button6.Select();
        button6.OnSelect(null);
     }
-    void RunOptions() {
+    void RunTutorial() {
+        SceneManager.LoadScene("Tutorial 1");
         //
     }
      public void QuitGame()
