@@ -25,6 +25,7 @@ public class PlayerMovement : ShooterMovement
 
     GameObject pauseMenuInScene;
     [SerializeField] GameObject pauseMenuPrefab;
+    [SerializeField] GameObject afterActionReportPrefab;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldMask;
 
@@ -284,6 +285,19 @@ public class PlayerMovement : ShooterMovement
         }
 
         dead = true;
+        bool gameOver = true;
+        PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (!players[i].dead)
+            {
+                gameOver = false;
+            }
+        }
+        if (gameOver)
+        {
+            Instantiate(afterActionReportPrefab);
+        }
     }
 
 
