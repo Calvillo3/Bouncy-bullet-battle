@@ -23,6 +23,8 @@ public class PlayerMovement : ShooterMovement
     float maxHealth;
     CircleCollider2D coll;
 
+    GameObject pauseMenuInScene;
+    [SerializeField] GameObject pauseMenuPrefab;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldMask;
 
@@ -75,6 +77,25 @@ public class PlayerMovement : ShooterMovement
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+        if (Input.GetKeyDown("joystick " + playerNum + " button 6" ))
+        {
+
+            if(Time.timeScale < 1.0f)
+            {
+                Time.timeScale = 1.0f;
+                Destroy(pauseMenuInScene);
+                Debug.Log("Unpause" + playerNum); 
+            }
+            else
+            {
+                pauseMenuInScene = GameObject.Instantiate(pauseMenuPrefab);
+                Debug.Log("Pause" + playerNum);
+                Time.timeScale = 0.0f;
+            }
+            // Time.timeScale = Time.timeScale < 1.0f ? 1.0f : 0.0f;
+            
+        }
+
         if (dead) { return; }
 
         if (invincible)
@@ -112,55 +133,66 @@ public class PlayerMovement : ShooterMovement
             angle = Mathf.Atan2(-horizontal, -vertical) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
-    
+
         // rb.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
-       
-        
 
-        if (bulletType[0]) {
-        if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[0])
-        {
-            readyToShoot = true;
-        }
 
-        if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot)
+
+        if (Time.timeScale > 0.0f)
         {
-            readyToShoot = false;
-            currShotDelay = 0;
-            Fire();
-        }
-        }
-        else if (bulletType[1]) {
-            
-            if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && currShotDelay >= shootDelay[1]) {
-                currShotDelay = 0;
-                Fire();
-                ammoCount--;
-                
-            }
-            if(ammoCount <= 0) {
-                bulletType[0] = true;
-                bulletType[1] = false;
-                ammoCount = 0;
-                currShotDelay = 0;
-                return;
-            }
-        }
-        else if (bulletType[2]) {
-            if (ammoCount <= 0) {
-                bulletType[0] = true;
-                bulletType[2] = false;
-                ammoCount = 0;
-            }
-            if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[2])
+
+            if (bulletType[0])
             {
-                readyToShoot = true;
+                if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[0])
+                {
+                    readyToShoot = true;
+                }
+
+                if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot)
+                {
+                    readyToShoot = false;
+                    currShotDelay = 0;
+                    Fire();
+                }
             }
-            if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot) {
-                readyToShoot = false;
-                currShotDelay = 0;
-                ShotgunFire();
-                ammoCount--;
+            else if (bulletType[1])
+            {
+
+                if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && currShotDelay >= shootDelay[1])
+                {
+                    currShotDelay = 0;
+                    Fire();
+                    ammoCount--;
+
+                }
+                if (ammoCount <= 0)
+                {
+                    bulletType[0] = true;
+                    bulletType[1] = false;
+                    ammoCount = 0;
+                    currShotDelay = 0;
+                    return;
+                }
+            }
+            else if (bulletType[2])
+            {
+                if (ammoCount <= 0)
+                {
+                    bulletType[0] = true;
+                    bulletType[2] = false;
+                    ammoCount = 0;
+                }
+                if (Input.GetAxisRaw("Fire1Player" + playerNum) < 0.5 && currShotDelay >= shootDelay[2])
+                {
+                    readyToShoot = true;
+                }
+                if (Input.GetAxisRaw("Fire1Player" + playerNum) >= 0.99 && readyToShoot)
+                {
+                    readyToShoot = false;
+                    currShotDelay = 0;
+                    ShotgunFire();
+                    ammoCount--;
+                }
             }
         }
         currShotDelay += Time.deltaTime;

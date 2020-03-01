@@ -270,6 +270,8 @@ MonoBehaviour:
   - 0.5
   ghost: {fileID: 0}
   playerNum: 0
+  pauseMenuPrefab: {fileID: 6797663845662636350, guid: c09cd980a0554e24b8adfb887491d558,
+    type: 3}
   shield: {fileID: 9136996878362926015}
   shieldMask: {fileID: 1105844654720548139}
   invincibleIncrement: 1
