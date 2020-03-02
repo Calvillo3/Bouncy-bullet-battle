@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  bounds: 10
+  bounds: 15
   explosion: {fileID: 6841853601902990105, guid: deec43ad25af58745a1d1dc1d6c74f66,
     type: 3}
 --- !u!58 &-7190916461788663746
