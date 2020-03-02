@@ -7782,6 +7782,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 430299363323517617, guid: cfa131b3057ea6649907491f185b8a38,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 10318174}
     - target: {fileID: 512593820230091775, guid: cfa131b3057ea6649907491f185b8a38,
         type: 3}
       propertyPath: m_Mesh
@@ -15590,6 +15595,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7023077239174060903, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 902112042}
     - target: {fileID: 7023077239888655766, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
         type: 3}
       propertyPath: m_Name
