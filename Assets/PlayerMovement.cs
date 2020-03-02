@@ -22,7 +22,7 @@ public class PlayerMovement : ShooterMovement
     bool dead = false;
     float maxHealth;
     CircleCollider2D coll;
-    [SerializeField] Boolean comp;
+    [SerializeField] public Boolean comp;
 
     GameObject pauseMenuInScene;
     [SerializeField] GameObject pauseMenuPrefab;
