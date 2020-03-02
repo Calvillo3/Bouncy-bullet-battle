@@ -25,6 +25,7 @@ public class SceneSwitcher : MonoBehaviour
         button2.onClick.AddListener(RunTutorial);
         button3.onClick.AddListener(QuitGame);
         button4.onClick.AddListener(PlayCoop);
+        button5.onClick.AddListener(PlayComp);
         button6.onClick.AddListener(PlayEasy);
         button7.onClick.AddListener(PlayMedium);
         button8.onClick.AddListener(PlayHard);
@@ -72,6 +73,10 @@ public class SceneSwitcher : MonoBehaviour
     void PlayHard() {
         diff.diff = 1.5f;
         SceneManager.LoadScene("Level 1");
+    }
+    void PlayComp() {
+        diff.diff = 1.0f;
+        SceneManager.LoadScene("Comp 1");
     }
     void RunGame() {
         //

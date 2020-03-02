@@ -1221,6 +1221,11 @@ PrefabInstance:
       propertyPath: ghost
       value: 
       objectReference: {fileID: 16870868}
+    - target: {fileID: 1875095814466082774, guid: 06fc4d50813585645bc789a0abbcfbd9,
+        type: 3}
+      propertyPath: comp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1875095814466082775, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
       propertyPath: m_Enabled
@@ -8486,6 +8491,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4442340234572687612, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442340234572687612, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.09411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442340234572687612, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5585838025460496837, guid: 8b2f0fcbdc77d9e479c6c8c257776825,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15675,6 +15695,21 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 888653103589737614, guid: cfa131b3057ea6649907491f185b8a38,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 888653103589737614, guid: cfa131b3057ea6649907491f185b8a38,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5364704
+      objectReference: {fileID: 0}
+    - target: {fileID: 888653103589737614, guid: cfa131b3057ea6649907491f185b8a38,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5802191201504532964, guid: cfa131b3057ea6649907491f185b8a38,
         type: 3}
       propertyPath: m_Name
@@ -16222,6 +16257,11 @@ PrefabInstance:
       propertyPath: ghost
       value: 
       objectReference: {fileID: 1570361465}
+    - target: {fileID: 1875095814466082774, guid: 06fc4d50813585645bc789a0abbcfbd9,
+        type: 3}
+      propertyPath: comp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1875095814466082775, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
       propertyPath: m_Enabled

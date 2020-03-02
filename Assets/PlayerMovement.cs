@@ -22,6 +22,7 @@ public class PlayerMovement : ShooterMovement
     bool dead = false;
     float maxHealth;
     CircleCollider2D coll;
+    [SerializeField] Boolean comp;
 
     GameObject pauseMenuInScene;
     [SerializeField] GameObject pauseMenuPrefab;
@@ -287,6 +288,7 @@ public class PlayerMovement : ShooterMovement
         dead = true;
         bool gameOver = true;
         PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+        if (!comp) {
         for (int i = 0; i < players.Length; i++)
         {
             if (!players[i].dead)
@@ -294,9 +296,11 @@ public class PlayerMovement : ShooterMovement
                 gameOver = false;
             }
         }
+        
         if (gameOver)
         {
             GameObject afterActionReport = Instantiate(afterActionReportPrefab);
+        }
         }
     }
 
