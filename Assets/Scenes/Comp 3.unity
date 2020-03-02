@@ -1807,6 +1807,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8507406288942699975, guid: a14b74f82e631164db3d1c7c3d7e995c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 8507406289816889210, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
       propertyPath: m_textInfo.characterCount
