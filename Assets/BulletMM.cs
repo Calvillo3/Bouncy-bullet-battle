@@ -43,7 +43,7 @@ public class BulletMM : MonoBehaviour
     {
         if ((lastPos - rb.position).magnitude / (speed * Time.fixedDeltaTime) < .9)
         {
-            Debug.Log("MURDER" + Time.time.ToString());
+          
             Destroy(this.gameObject);
             return;
         }
