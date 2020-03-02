@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : ShooterMovement
 {
@@ -297,7 +298,10 @@ public class PlayerMovement : ShooterMovement
         if (gameOver)
         {
             GameObject afterActionReport = Instantiate(afterActionReportPrefab);
-        }
+            GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
+            GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
+            GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
+            }
         }
     }
 
