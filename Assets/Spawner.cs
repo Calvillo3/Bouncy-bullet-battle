@@ -127,6 +127,7 @@ public class Spawner : MonoBehaviour
         nextSpawnTime = 0;
         spawners = gameObject.GetComponentsInChildren<Transform>();
         currtime = 2;
+        waveText = GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

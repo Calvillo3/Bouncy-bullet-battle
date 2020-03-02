@@ -8,7 +8,6 @@ public class PlayerAmmo : MonoBehaviour
 {
     // Start is called before the first frame update
    
-    [SerializeField] GameObject player;
     public TextMeshProUGUI ammoText;
     public Image gunImage;
     [SerializeField] Sprite akSprite;
@@ -18,13 +17,24 @@ public class PlayerAmmo : MonoBehaviour
     PlayerMovement playerMovement;
     private void Start()
     {
-        playerMovement = player.GetComponent<PlayerMovement>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        int playerNum = playerMovement.playerNum;
+        if (playerNum == 1)
+        {
+            ammoText = GameObject.Find("GreenAmmo").GetComponent<TextMeshProUGUI>();
+            gunImage = GameObject.Find("GreenGun").GetComponent<Image>();
+        }
+        else
+        {
+            ammoText = GameObject.Find("BlueAmmo").GetComponent<TextMeshProUGUI>();
+            gunImage = GameObject.Find("BlueGun").GetComponent<Image>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<PlayerMovement>().ammoCount > 0)
+        if (playerMovement.ammoCount > 0)
         {
             ammoText.text = playerMovement.ammoCount.ToString();
             if (playerMovement.bulletType[1])

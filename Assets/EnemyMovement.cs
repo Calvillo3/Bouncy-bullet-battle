@@ -37,6 +37,9 @@ public class EnemyMovement : ShooterMovement
     // Start is called before the first frame update
     void Start()
     {
+        p1ScoreBoard = GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>();
+        p2ScoreBoard = GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>();
+
         lastSpot = transform.position;
         path = nav.pathfinder;
         foundNextStep = false;

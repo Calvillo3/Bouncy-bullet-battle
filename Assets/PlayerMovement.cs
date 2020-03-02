@@ -17,7 +17,7 @@ public class PlayerMovement : ShooterMovement
     float currShotDelay;
 
     [SerializeField] Ghost ghost;
-    [SerializeField] int playerNum;
+    [SerializeField] public int playerNum;
     bool readyToShoot = true;
     bool dead = false;
     float maxHealth;
