@@ -296,7 +296,7 @@ public class PlayerMovement : ShooterMovement
         }
         if (gameOver)
         {
-            Instantiate(afterActionReportPrefab);
+            GameObject afterActionReport = Instantiate(afterActionReportPrefab);
         }
     }
 
