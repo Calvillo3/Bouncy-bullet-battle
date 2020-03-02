@@ -16,6 +16,7 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] Button button6;
     [SerializeField] Button button7;
     [SerializeField] Button button8;
+    Difficulty diff;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class SceneSwitcher : MonoBehaviour
         button6.onClick.AddListener(PlayEasy);
         button7.onClick.AddListener(PlayMedium);
         button8.onClick.AddListener(PlayHard);
+
+        diff = FindObjectOfType<Difficulty>();
     }
     void Update() {
         if(Input.GetButtonDown("BackButton")) {
@@ -59,13 +62,16 @@ public class SceneSwitcher : MonoBehaviour
 
     // Update is called once per frame
     void PlayEasy() {
-        SceneManager.LoadScene("Easy");
+        diff.diff = .5f;
+        SceneManager.LoadScene("Level 1");
     }
     void PlayMedium() {
-        SceneManager.LoadScene("Medium");
+        diff.diff = 1f;
+        SceneManager.LoadScene("Level 1");
     }
     void PlayHard() {
-        SceneManager.LoadScene("Hard");
+        diff.diff = 1.5f;
+        SceneManager.LoadScene("Level 1");
     }
     void RunGame() {
         //

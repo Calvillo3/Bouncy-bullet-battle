@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     float currtime;
     Transform[] spawners;
     GameObject currspawner;
+    float diff;
 
     // These params can be played with at 
     // https://docs.google.com/spreadsheets/d/1IfBrU4DdlSni5aqVUrOrI0jhVTFAdG4zZzFWZSZqzjI/edit#gid=0
@@ -66,9 +67,9 @@ public class Spawner : MonoBehaviour
 
     Dictionary<string, int[]> hardCodedEnemies = new Dictionary<string, int[]>
     {
-        { "1.2", new int[] { 1 }},
-        { "1.3", new int[] { 2 }},
-        { "1.4", new int[] { 3 }},
+        //{ "1.2", new int[] { 1 }},
+        //{ "1.3", new int[] { 2 }},
+        //{ "1.4", new int[] { 3 }},
     };
 
 
@@ -122,6 +123,7 @@ public class Spawner : MonoBehaviour
     {
         //int[][][] waveOptions = new int[][][] { waveEnemies0, waveEnemies1, waveEnemies2 };
         //waveEnemies = waveOptions[waveSelector];
+        diff = FindObjectOfType<Difficulty>().diff;
         nextSpawnTime = 0;
         spawners = gameObject.GetComponentsInChildren<Transform>();
         currtime = 2;
@@ -175,12 +177,13 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             // Use the parameter to decide how to weight level and wave
-            int numOfEnemy = Mathf.RoundToInt(
+            // Adjust based on a difficulty scalar
+            int numOfEnemy = Mathf.RoundToInt( diff * (
                   spawnParams[i]["log(level)"] * Mathf.Log10(level)
                 + spawnParams[i]["log(wave)"] * Mathf.Log10(wave)
                 + spawnParams[i]["level"] * level
                 + spawnParams[i]["wave"] * wave
-                + spawnParams[i]["constant"]);
+                + spawnParams[i]["constant"]));
 
             // Don't try to make negative numbers of enemies
             numOfEnemy = Mathf.Max(numOfEnemy, 0);
