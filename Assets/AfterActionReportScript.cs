@@ -10,16 +10,23 @@ public class AfterActionReportScript : MonoBehaviour
 {
     [SerializeField] Button button1;
     [SerializeField] Button button2;
+    [SerializeField] Button button3;
 
     // Start is called before the first frame update
     void Start()
     {
-        button1.onClick.AddListener(BackToMenu);
-        button2.onClick.AddListener(QuitGame);
+        button1.onClick.AddListener(Restart);
+        button2.onClick.AddListener(BackToMenu);
+        button3.onClick.AddListener(QuitGame);
     }
     void Update()
     {
 
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void BackToMenu()
