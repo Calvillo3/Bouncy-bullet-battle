@@ -34,9 +34,12 @@ public class EnemyMovement : ShooterMovement
     [SerializeField] float yBound;
     float reloadedAtTime;
 
+    GameStateData gameStateData;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameStateData = FindObjectOfType<GameStateData>();
         p1ScoreBoard = GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>();
         p2ScoreBoard = GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>();
 
@@ -72,11 +75,14 @@ public class EnemyMovement : ShooterMovement
             {
                 if (lastShooter.name == "Player 1")
                 {
-                    p1ScoreBoard.text = (int.Parse(p1ScoreBoard.text) + 1).ToString();
+
+                    gameStateData.p1Kills++;
+                    p1ScoreBoard.text = (gameStateData.p1Kills).ToString();
                 }
                 else if (lastShooter.name == "Player 2")
                 {
-                    p2ScoreBoard.text = (int.Parse(p2ScoreBoard.text) + 1).ToString();
+                    gameStateData.p2Kills++;
+                    p2ScoreBoard.text = (gameStateData.p2Kills).ToString();
                 }
             }
             Gradient grad = new Gradient();

@@ -16,7 +16,7 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] Button button6;
     [SerializeField] Button button7;
     [SerializeField] Button button8;
-    Difficulty diff;
+    GameStateData diff;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class SceneSwitcher : MonoBehaviour
         button7.onClick.AddListener(PlayMedium);
         button8.onClick.AddListener(PlayHard);
 
-        diff = FindObjectOfType<Difficulty>();
+        diff = FindObjectOfType<GameStateData>();
     }
     void Update() {
         if(Input.GetButtonDown("BackButton")) {

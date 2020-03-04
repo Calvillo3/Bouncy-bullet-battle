@@ -25,6 +25,8 @@ public class PlayerMovement : ShooterMovement
     CircleCollider2D coll;
     [SerializeField] public Boolean comp;
 
+    public bool gameOver = false;
+
     GameObject pauseMenuInScene;
     [SerializeField] GameObject pauseMenuPrefab;
     [SerializeField] GameObject afterActionReportPrefab;
@@ -77,7 +79,8 @@ public class PlayerMovement : ShooterMovement
     void Update()
     {
 
-        if (Input.GetKeyDown("joystick " + playerNum + " button 7" ))
+        
+        if (!gameOver && Input.GetKeyDown("joystick " + playerNum + " button 7" ))
         {
 
             if(Time.timeScale < 1.0f)
@@ -279,7 +282,7 @@ public class PlayerMovement : ShooterMovement
         }
 
         dead = true;
-        bool gameOver = true;
+        gameOver = true;
         PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
         if (!comp) 
         {
@@ -291,15 +294,22 @@ public class PlayerMovement : ShooterMovement
                 }
             }
         
-            if (gameOver && FindObjectOfType<Difficulty>())
+            if (gameOver && FindObjectOfType<GameStateData>())
             { 
-                if (FindObjectOfType<Difficulty>().mode != "Tutorial")
+                if (FindObjectOfType<GameStateData>().mode != "Tutorial")
                 {
                     GameObject afterActionReport = Instantiate(afterActionReportPrefab);
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
                 }
+            }
+        }
+        if (gameOver)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].gameOver = true;
             }
         }
     }

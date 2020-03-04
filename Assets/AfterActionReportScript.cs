@@ -19,14 +19,18 @@ public class AfterActionReportScript : MonoBehaviour
         button2.onClick.AddListener(BackToMenu);
         button3.onClick.AddListener(QuitGame);
     }
-    void Update()
-    {
-
-    }
 
     void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (GameObject.FindObjectOfType<GameStateData>().mode == "Co-Op")
+        {
+            SceneManager.LoadScene("Level 1");
+        } else
+        {
+            SceneManager.LoadScene("Comp 1");
+        }
+        GameObject.FindObjectOfType<GameStateData>().Restart();
     }
 
     void BackToMenu()
