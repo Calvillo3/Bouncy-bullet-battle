@@ -38,7 +38,7 @@ public class PortalComp : MonoBehaviour
             // Deposit the particle
             playerInside.LoseParticle();
             particlesNeeded--;
-            if (particlesNeeded < 1)
+            if (particlesNeeded == 0)
             {
                 Instantiate(compRoundEndScreen);
                 if (playerInside.playerNum == 1)

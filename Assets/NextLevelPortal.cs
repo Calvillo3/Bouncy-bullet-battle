@@ -37,29 +37,9 @@ public class NextLevelPortal : MonoBehaviour
             // Deposit the particle
             playerInside.LoseParticle();
             particlesNeeded--;
-            if (particlesNeeded < 1)
+            if (particlesNeeded == 0)
             {
-                if(gameStateData.mode == "Comp")
-                {
-                    Instantiate(compRoundEndScreen);
-                    if (playerInside.playerNum == 1)
-                    {
-
-                        gameStateData.p1Wins++;
-                        GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round Winner: Player 1";
-                    }
-                    else
-                    {
-                        gameStateData.p2Wins++;
-                        GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round winner: Player 2";
-                    }
-                    GameObject.Find("AfterActionBlueWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p2Wins;
-                    GameObject.Find("AfterActionGreenWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p1Wins;
-                }
-                else
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             display.text = particlesNeeded.ToString();
             // Check if the player can still deposit more
