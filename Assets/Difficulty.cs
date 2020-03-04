@@ -5,6 +5,7 @@ using UnityEngine;
 public class Difficulty : MonoBehaviour
 {
     public float diff;
+    public string mode;
     private void Awake()
     {
         Difficulty[] diffs = FindObjectsOfType<Difficulty>();

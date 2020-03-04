@@ -63,18 +63,22 @@ public class SceneSwitcher : MonoBehaviour
 
     // Update is called once per frame
     void PlayEasy() {
+        diff.mode = "Co-Op";
         diff.diff = .5f;
         SceneManager.LoadScene("Level 1");
     }
     void PlayMedium() {
+        diff.mode = "Co-Op";
         diff.diff = 1f;
         SceneManager.LoadScene("Level 1");
     }
     void PlayHard() {
+        diff.mode = "Co-Op";
         diff.diff = 1.5f;
         SceneManager.LoadScene("Level 1");
     }
     void PlayComp() {
+        diff.mode = "Comp";
         diff.diff = 1.0f;
         SceneManager.LoadScene("Comp 1");
     }
@@ -100,6 +104,7 @@ public class SceneSwitcher : MonoBehaviour
        button6.OnSelect(null);
     }
     void RunTutorial() {
+        diff.mode = "Tutorial";
         SceneManager.LoadScene("Tutorial 1");
         //
     }

@@ -281,21 +281,25 @@ public class PlayerMovement : ShooterMovement
         dead = true;
         bool gameOver = true;
         PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
-        if (!comp) {
-        for (int i = 0; i < players.Length; i++)
+        if (!comp) 
         {
-            if (!players[i].dead)
+            for (int i = 0; i < players.Length; i++)
             {
-                gameOver = false;
+                if (!players[i].dead)
+                {
+                    gameOver = false;
+                }
             }
-        }
         
-        if (gameOver)
-        {
-            GameObject afterActionReport = Instantiate(afterActionReportPrefab);
-            GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
-            GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
-            GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
+            if (gameOver && FindObjectOfType<Difficulty>())
+            { 
+                if (FindObjectOfType<Difficulty>().mode != "Tutorial")
+                {
+                    GameObject afterActionReport = Instantiate(afterActionReportPrefab);
+                    GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
+                    GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
+                    GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
+                }
             }
         }
     }
