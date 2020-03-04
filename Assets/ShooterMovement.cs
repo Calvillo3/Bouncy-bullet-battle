@@ -67,10 +67,16 @@ public class ShooterMovement : MonoBehaviour
     }
 
     // I'm not perfectly consistent or sure about if this should be an int or a float... 
-    public void TakeDamage(int amount, GameObject lastShooter)
+    public void TakeDamage(int amount, GameObject lastShooter, string shooterTag)
     {
-        if(gameObject.GetComponent<PlayerMovement>() && lastShooter.GetComponent<PlayerMovement>() && gameObject.GetComponent<PlayerMovement>().comp && lastShooter != gameObject) {
-            return;
+        // No friendly fire in competitive
+        if (GetComponent<PlayerMovement>() && tag == shooterTag)
+        {
+            // We have to check this last pars to avoid errors
+            if (lastShooter != gameObject && GetComponent<PlayerMovement>().comp)
+            {
+                return;
+            }
         }
         else {
         health -= amount;
