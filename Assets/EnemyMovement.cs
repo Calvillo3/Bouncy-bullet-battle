@@ -158,7 +158,7 @@ public class EnemyMovement : ShooterMovement
         {
             // Is the player in range? Can we get from the player to me?
             Vector2 disp = rb.position - target.rb.position;
-            RaycastHit2D hit = Physics2D.CircleCast(target.rb.position, coll.radius / 2, disp, disp.magnitude, LayerMask.GetMask("Wall", "Enemy"));
+            RaycastHit2D hit = Physics2D.CircleCast(target.rb.position, coll.radius, disp, disp.magnitude, LayerMask.GetMask("Wall", "Enemy"));
             return (hit.collider == coll || !hit);
         }
         else return false;
