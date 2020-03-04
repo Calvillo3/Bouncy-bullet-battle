@@ -271,6 +271,7 @@ MonoBehaviour:
   - 0.5
   ghost: {fileID: 0}
   playerNum: 0
+  comp: 0
   pauseMenuPrefab: {fileID: 6797663845662636350, guid: c09cd980a0554e24b8adfb887491d558,
     type: 3}
   afterActionReportPrefab: {fileID: 6797663845662636350, guid: 97d8ece1387528345b9d259829f555a4,
@@ -329,7 +330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f170e43e57f9a34ba685f5a0ede3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
@@ -403,7 +403,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 04856583811d5924284ad34a386b97ab, type: 3}
   m_Color: {r: 0, g: 1, b: 0.15686275, a: 1}
   m_FlipX: 0
