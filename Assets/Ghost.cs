@@ -35,17 +35,18 @@ public class Ghost : MonoBehaviour
     {   if (comp == 1 & timeEntered == Mathf.Infinity) {
         timeEntered = Time.time;
     }
-        if (comp == 1) {
+        if (comp == 1) 
+        {
             if (timeEntered == Mathf.Infinity)
             {
                 Debug.Log("Start it up");
                 timeEntered = Time.time;
             }
-            else if (Time.time > timeEntered + reviveTime)
-            {
-                Revive();
-            }
+        }
 
+        if (Time.time > (timeEntered + reviveTime))
+        {
+            Revive();
         }
         progress.fillAmount = Mathf.Clamp((Time.time - timeEntered) / reviveTime, 0, 1);
         if (Time.time > timeEntered + reviveTime)
@@ -66,20 +67,14 @@ public class Ghost : MonoBehaviour
 
 
     private void OnTriggerExit2D(Collider2D collision)
-    { 
-        if (comp == 0) {
-        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-        if (layerName == "Player")
+    {
+        if (comp == 0)
         {
-            if (Time.time > (timeEntered + reviveTime))
-            {
-                Revive();
-            }
-            else
+            string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+            if (layerName == "Player")
             {
                 timeEntered = Mathf.Infinity;
             }
-        }
         }
     }
 
