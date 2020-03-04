@@ -15,12 +15,16 @@ public class PortalComp : MonoBehaviour
     [SerializeField] int particlesNeeded;
     [SerializeField] TextMeshPro display;
     CircleCollider2D coll;
+
+    [SerializeField] GameObject compRoundEndScreen;
+    GameStateData gameStateData;
     // Start is called before the first frame update
     void Start()
     {
         timeStarted = Mathf.Infinity;
         coll = GetComponent<CircleCollider2D>();
         display.text = particlesNeeded.ToString();
+        gameStateData = GameObject.FindObjectOfType<GameStateData>();
     }
 
     // Update is called once per frame
@@ -36,7 +40,20 @@ public class PortalComp : MonoBehaviour
             particlesNeeded--;
             if (particlesNeeded < 1)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Instantiate(compRoundEndScreen);
+                if (playerInside.playerNum == 1)
+                {
+
+                    gameStateData.p1Wins++;
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round Winner: Player 1";
+                }
+                else
+                {
+                    gameStateData.p2Wins++;
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round winner: Player 2";
+                }
+                GameObject.Find("AfterActionBlueWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p2Wins;
+                GameObject.Find("AfterActionGreenWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p1Wins;
             }
             display.text = particlesNeeded.ToString();
             // Check if the player can still deposit more

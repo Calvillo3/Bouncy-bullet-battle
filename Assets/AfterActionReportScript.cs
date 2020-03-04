@@ -15,9 +15,23 @@ public class AfterActionReportScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button1.onClick.AddListener(Restart);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (GameObject.FindObjectOfType<GameStateData>().mode == "Comp")
+        {
+            button1.onClick.AddListener(NextCompLevel);
+        }
+        else
+        {
+            button1.onClick.AddListener(Restart);
+        }
+        ;
         button2.onClick.AddListener(BackToMenu);
         button3.onClick.AddListener(QuitGame);
+    }
+
+    void NextCompLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void Restart()

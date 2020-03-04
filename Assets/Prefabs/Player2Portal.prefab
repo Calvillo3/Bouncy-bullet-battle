@@ -398,6 +398,8 @@ MonoBehaviour:
   progress: {fileID: 888653103589737614}
   particlesNeeded: 10
   display: {fileID: 601145096007832106}
+  compRoundEndScreen: {fileID: 6797663845662636350, guid: 05ce64484c1b50a46b787057dbc1260b,
+    type: 3}
 --- !u!1 &7504441101726261695
 GameObject:
   m_ObjectHideFlags: 0

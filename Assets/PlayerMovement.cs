@@ -305,12 +305,9 @@ public class PlayerMovement : ShooterMovement
                 }
             }
         }
-        if (gameOver)
+        else
         {
-            for (int i = 0; i < players.Length; i++)
-            {
-                players[i].gameOver = true;
-            }
+            gameOver = false;
         }
     }
 
