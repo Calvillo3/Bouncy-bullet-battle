@@ -77,12 +77,7 @@ public class PlayerMovement : ShooterMovement
     void Update()
     {
 
-        if (Input.GetAxisRaw("Start") == 1)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        if (Input.GetKeyDown("joystick " + playerNum + " button 6" ))
+        if (Input.GetKeyDown("joystick " + playerNum + " button 7" ))
         {
 
             if(Time.timeScale < 1.0f)
