@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f170e43e57f9a34ba685f5a0ede3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 10318174}
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
@@ -822,7 +821,7 @@ PrefabInstance:
     - target: {fileID: 1875095814466082770, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1875095814466082771, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
@@ -6579,7 +6578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f170e43e57f9a34ba685f5a0ede3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 902112042}
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
@@ -7739,9 +7737,9 @@ MonoBehaviour:
 
 
 
-    Careful, bullets bounce four times
+    Bullets bounce four times
 
-    and your own bullets can kill you!'
+    Your own bullets can kill you!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04d9e3b577e94404b937ec248486b131, type: 2}
   m_sharedMaterial: {fileID: 2535628059640376232, guid: 04d9e3b577e94404b937ec248486b131,
@@ -7751,8 +7749,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291019715
-  m_fontColor: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7811,10 +7809,10 @@ MonoBehaviour:
   m_margin: {x: 1.6190434, y: -1.511107, z: 1.5470867, w: -1.4948826}
   m_textInfo:
     textComponent: {fileID: 1618942318}
-    characterCount: 162
+    characterCount: 149
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 27
+    spaceCount: 30
+    wordCount: 25
     linkCount: 0
     lineCount: 11
     pageCount: 1
