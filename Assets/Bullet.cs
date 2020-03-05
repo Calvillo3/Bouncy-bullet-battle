@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour
             // But this is an extra precaution. 
             if (collision.gameObject != shooter || escapedShooter)
             {
-                collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter, tag);
+                collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                 Destroy(this.gameObject);
             }
         }
@@ -127,7 +127,7 @@ public class Bullet : MonoBehaviour
             {
                 if (layerName == "Enemy")
                 {
-                    collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter, tag);
+                    collision.gameObject.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                     Destroy(this.gameObject);
                 }
                 // For the cruel case where you go right up against your ally and shoot
@@ -136,16 +136,13 @@ public class Bullet : MonoBehaviour
                     PlayerMovement playerHit = collision.gameObject.GetComponent<PlayerMovement>();
                     if (playerHit != shooter)
                     {
-                        playerHit.TakeDamage(damage, shooter, tag);
+                        playerHit.TakeDamage(damage, shooter);
                         Destroy(this.gameObject);
                     }
                 }
                 if (layerName == "Wall")
                 {
-                    if(shooter.GetComponent<ShooterMovement>())
-                    {
-                        shooter.GetComponent<ShooterMovement>().TakeDamage(damage, shooter, tag);
-                    }
+                    shooter.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
                     Destroy(this.gameObject);
                 }
                 if (layerName == "TransparentFX")
