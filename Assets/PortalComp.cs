@@ -15,12 +15,18 @@ public class PortalComp : MonoBehaviour
     [SerializeField] int particlesNeeded;
     [SerializeField] TextMeshPro display;
     CircleCollider2D coll;
+    string mode;
 
     [SerializeField] GameObject compRoundEndScreen;
     GameStateData gameStateData;
     // Start is called before the first frame update
     void Start()
     {
+        mode = FindObjectOfType<GameStateData>().mode;
+        if (mode != "Comp")
+        {
+            gameObject.SetActive(false);
+        }
         timeStarted = Mathf.Infinity;
         coll = GetComponent<CircleCollider2D>();
         display.text = particlesNeeded.ToString();

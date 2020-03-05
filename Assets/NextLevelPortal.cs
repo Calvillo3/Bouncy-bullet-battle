@@ -17,9 +17,16 @@ public class NextLevelPortal : MonoBehaviour
 
     GameStateData gameStateData;
     [SerializeField] GameObject compRoundEndScreen;
+
+    string mode;
     // Start is called before the first frame update
     void Start()
     {
+        mode = FindObjectOfType<GameStateData>().mode;
+        if (mode == "Comp")
+        {
+            gameObject.SetActive(false);
+        }
         timeStarted = Mathf.Infinity;
         coll = GetComponent<CircleCollider2D>();
         display.text = particlesNeeded.ToString();

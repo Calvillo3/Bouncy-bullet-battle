@@ -272,6 +272,7 @@ MonoBehaviour:
   ghost: {fileID: 0}
   playerNum: 0
   comp: 0
+  gameOver: 0
   pauseMenuPrefab: {fileID: 6797663845662636350, guid: c09cd980a0554e24b8adfb887491d558,
     type: 3}
   afterActionReportPrefab: {fileID: 6797663845662636350, guid: 97d8ece1387528345b9d259829f555a4,
@@ -281,6 +282,8 @@ MonoBehaviour:
   invincibleIncrement: 1
   blinkPeriod: 0.1
   ammoCount: 0
+  defaultGameStateData: {fileID: 6888457181115125083, guid: 647878005a2f00943b8676c790c01ca3,
+    type: 3}
 --- !u!50 &1875095814466082769
 Rigidbody2D:
   serializedVersion: 4

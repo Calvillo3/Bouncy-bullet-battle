@@ -80,7 +80,7 @@ public class SceneSwitcher : MonoBehaviour
     void PlayComp() {
         diff.mode = "Comp";
         diff.diff = 1.0f;
-        SceneManager.LoadScene("Comp 1");
+        SceneManager.LoadScene("Level 1");
     }
     void RunGame() {
         //

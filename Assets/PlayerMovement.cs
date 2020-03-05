@@ -24,6 +24,7 @@ public class PlayerMovement : ShooterMovement
     float maxHealth;
     CircleCollider2D coll;
     [SerializeField] public Boolean comp;
+    string mode;
 
     public bool gameOver = false;
 
@@ -52,6 +53,23 @@ public class PlayerMovement : ShooterMovement
     float prevangle;
     public int ammoCount;
 
+    [SerializeField] GameStateData defaultGameStateData;
+
+
+    // Other gameObjects might need need these default values
+    private void Awake()
+    {
+        GameStateData diffObject = FindObjectOfType<GameStateData>();
+        if (!diffObject)
+        {
+            diffObject = Instantiate(defaultGameStateData);
+            if(comp)
+            {
+                diffObject.mode = "Comp";
+            }
+        }
+        mode = diffObject.mode;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -284,7 +302,7 @@ public class PlayerMovement : ShooterMovement
         dead = true;
         gameOver = true;
         PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
-        if (!comp) 
+        if (mode != "Comp") 
         {
             for (int i = 0; i < players.Length; i++)
             {
@@ -296,7 +314,7 @@ public class PlayerMovement : ShooterMovement
         
             if (gameOver && FindObjectOfType<GameStateData>())
             { 
-                if (FindObjectOfType<GameStateData>().mode != "Tutorial")
+                if (mode != "Tutorial")
                 {
                     GameObject afterActionReport = Instantiate(afterActionReportPrefab);
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);

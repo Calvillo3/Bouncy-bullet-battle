@@ -124,15 +124,7 @@ public class Spawner : MonoBehaviour
         //int[][][] waveOptions = new int[][][] { waveEnemies0, waveEnemies1, waveEnemies2 };
         //waveEnemies = waveOptions[waveSelector];
         waveText = GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>();
-        GameStateData diffObject = FindObjectOfType<GameStateData>();
-        if (diffObject)
-        {
-            diff = FindObjectOfType<GameStateData>().diff;
-        }
-        else
-        {
-            diff = 1; // A default value
-        }
+        diff = FindObjectOfType<GameStateData>().diff;
         nextSpawnTime = 0;
         spawners = gameObject.GetComponentsInChildren<Transform>();
         currtime = 2;

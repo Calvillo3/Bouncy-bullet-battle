@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Ghost : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
-    [SerializeField] int comp;
+    string mode;
     float timeEntered;
     [SerializeField] float reviveTime;
 
@@ -24,7 +24,7 @@ public class Ghost : MonoBehaviour
         ren.color = player.GetComponent<SpriteRenderer>().color;
         progress.color = ren.color;
         ren.color = Color.Lerp(ren.color, Color.white, colorFade);
-
+        mode = FindObjectOfType<GameStateData>().mode;
 
         timeEntered = Mathf.Infinity;
         nextBlink = 0;
@@ -32,10 +32,10 @@ public class Ghost : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   if (comp == 1 & timeEntered == Mathf.Infinity) {
+    {   if (mode == "Comp" & timeEntered == Mathf.Infinity) {
         timeEntered = Time.time;
     }
-        if (comp == 1) 
+        if (mode == "Comp") 
         {
             if (timeEntered == Mathf.Infinity)
             {
@@ -56,19 +56,20 @@ public class Ghost : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {   if(comp == 0) {
-        string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-        if (layerName == "Player")
+    {   if (mode != "Comp") 
         {
-            timeEntered = Time.time;
+            string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+            if (layerName == "Player")
+            {
+                timeEntered = Time.time;
+            }
         }
-    }
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (comp == 0)
+        if (mode != "Comp")
         {
             string layerName = LayerMask.LayerToName(collision.gameObject.layer);
             if (layerName == "Player")
