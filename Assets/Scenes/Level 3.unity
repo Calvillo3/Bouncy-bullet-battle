@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f170e43e57f9a34ba685f5a0ede3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 10318174}
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
@@ -873,7 +872,7 @@ MonoBehaviour:
   - {fileID: 1652275893}
   - {fileID: 42170891}
   timeInBetween: 3
-  waveSelector: 1
+  waveSelector: 3
 --- !u!4 &166553164
 Transform:
   m_ObjectHideFlags: 0
@@ -7224,7 +7223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f170e43e57f9a34ba685f5a0ede3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 902112042}
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
