@@ -12,10 +12,16 @@ public class AfterActionReportScript : MonoBehaviour
     [SerializeField] Button button2;
     [SerializeField] Button button3;
 
+    int currindex;
+    int index;
+    bool done;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        done = false;
+        currindex = SceneManager.GetActiveScene().buildIndex;
         if (GameObject.FindObjectOfType<GameStateData>().mode == "Comp")
         {
             button1.onClick.AddListener(NextCompLevel);
@@ -31,7 +37,15 @@ public class AfterActionReportScript : MonoBehaviour
 
     void NextCompLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        while(!done) {
+            index = Random.Range(1, 11); //these values need to be hardcoded according to build index
+            //make sure you don't do a repeat scene
+            if (index != currindex) {  
+                done = true;
+            }
+        }
+        SceneManager.LoadScene(index);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void Restart()
