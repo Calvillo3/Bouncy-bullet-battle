@@ -651,9 +651,9 @@ MonoBehaviour:
   size:
     serializedVersion: 2
     x: -0.18936777
-    y: -1.7278509
+    y: -0.5115223
     width: 26.465912
-    height: 14.376448
+    height: 16.809105
 --- !u!4 &102500228
 Transform:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   - {fileID: 1652275893}
   - {fileID: 42170891}
   timeInBetween: 3
-  waveSelector: 10
+  waveSelector: 1
 --- !u!4 &166553164
 Transform:
   m_ObjectHideFlags: 0
@@ -15180,11 +15180,6 @@ PrefabInstance:
       propertyPath: ghost
       value: 
       objectReference: {fileID: 1570361465}
-    - target: {fileID: 1875095814466082774, guid: 06fc4d50813585645bc789a0abbcfbd9,
-        type: 3}
-      propertyPath: comp
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1875095814466082775, guid: 06fc4d50813585645bc789a0abbcfbd9,
         type: 3}
       propertyPath: m_Enabled
