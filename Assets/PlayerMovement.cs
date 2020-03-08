@@ -125,6 +125,7 @@ public class PlayerMovement : ShooterMovement
             if (Time.time > invincibleUntilTime)
             {
                 invincible = false;
+                ren.enabled = true;
             }
             else
             {
