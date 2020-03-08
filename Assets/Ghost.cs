@@ -8,8 +8,9 @@ public class Ghost : MonoBehaviour
     [SerializeField] PlayerMovement player;
     string mode;
     float timeEntered;
-    [SerializeField] float reviveTime;
-
+    [SerializeField] float coopReviveTime;
+    [SerializeField] float compReviveTime;
+    float reviveTime;
     [SerializeField] float blinkPeriod;
     float nextBlink;
     SpriteRenderer ren;
@@ -26,6 +27,14 @@ public class Ghost : MonoBehaviour
         ren.color = Color.Lerp(ren.color, Color.white, colorFade);
         mode = FindObjectOfType<GameStateData>().mode;
 
+        if (mode == "Comp")
+        {
+            reviveTime = compReviveTime;
+        }
+        else
+        {
+            reviveTime = coopReviveTime;
+        }
         timeEntered = Mathf.Infinity;
         nextBlink = 0;
     }
