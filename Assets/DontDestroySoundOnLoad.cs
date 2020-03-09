@@ -15,6 +15,7 @@ public class DontDestroySoundOnLoad : MonoBehaviour
 
         if (sounds.Length > 1)
         {
+            Debug.Log("KILL");
             Destroy(this.gameObject);
         }
 

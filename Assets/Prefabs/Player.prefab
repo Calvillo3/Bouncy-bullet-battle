@@ -282,6 +282,7 @@ MonoBehaviour:
   invincibleIncrement: 1
   blinkPeriod: 0.1
   ammoCount: 0
+  soundEffect: {fileID: 8300000, guid: 4d300bbedb78123458487c75c7a17af6, type: 3}
   defaultGameStateData: {fileID: 6888457181115125083, guid: 647878005a2f00943b8676c790c01ca3,
     type: 3}
 --- !u!50 &1875095814466082769

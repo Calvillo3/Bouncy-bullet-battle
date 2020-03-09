@@ -117,6 +117,7 @@ MonoBehaviour:
   blinkPeriod: 0.25
   colorFade: 0.75
   progress: {fileID: 5151327910263186146}
+  soundEffect: {fileID: 8300000, guid: 24076a302c96eac4eb8687c48e505886, type: 3}
 --- !u!1001 &4361105138734876909
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class Ghost : MonoBehaviour
     SpriteRenderer ren;
     [SerializeField] float colorFade;
     [SerializeField] Image progress;
-
+    [SerializeField] AudioClip soundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +98,7 @@ public class Ghost : MonoBehaviour
 
         player.Revive();
         timeEntered = Mathf.Infinity;
+        FindObjectOfType<AudioSource>().PlayOneShot(soundEffect);
         this.gameObject.SetActive(false);
     }
 

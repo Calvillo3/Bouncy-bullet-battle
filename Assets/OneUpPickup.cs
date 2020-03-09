@@ -5,6 +5,7 @@ using UnityEngine;
 public class OneUpPickup : MonoBehaviour
 {
     GameObject lst;
+    [SerializeField] AudioClip soundEffect;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class OneUpPickup : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            FindObjectOfType<AudioSource>().PlayOneShot(soundEffect);
             lst.GetComponent<WeaponSpawnManager>().PickedUp(gameObject);
             col.gameObject.GetComponent<PlayerMovement>().AddCircle();
         }

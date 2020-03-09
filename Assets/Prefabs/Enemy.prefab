@@ -110,6 +110,7 @@ MonoBehaviour:
   p2ScoreBoard: {fileID: 0}
   xBound: 8
   yBound: 4
+  soundEffect: {fileID: 8300000, guid: 4f4186bb9863f234081b83730ac43c09, type: 3}
 --- !u!50 &6977311057941796927
 Rigidbody2D:
   serializedVersion: 4

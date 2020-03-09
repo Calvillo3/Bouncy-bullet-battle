@@ -10,12 +10,16 @@ public class GlowParticleScript : MonoBehaviour
     float separationValue;
     float speed;
 
+    [SerializeField] float timeAlive;
+    float timeToKill;
+
     // Start is called before the first frame update
     void Start()
     {
         positionInOwnerTrail = 0;
         separationValue = 0.1f;
         speed = 7.0f;
+        timeToKill = Time.time + timeAlive;
     }
 
     // Update is called once per frame
@@ -30,6 +34,10 @@ public class GlowParticleScript : MonoBehaviour
                     transform.position += (owner.transform.position - transform.position) * Time.deltaTime * speed * (1.0f - ((float)(positionInOwnerTrail) / (1.0f + (float)(positionInOwnerTrail))));
                 }
             }
+        }
+        else if (Time.time > timeToKill)
+        {
+            Destroy(this.gameObject);
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AKPickup : MonoBehaviour
 {
     GameObject lst;
+    [SerializeField] AudioClip soundEffect;
     void Start() {
         lst = GameObject.Find("/Tethers");
     }
@@ -14,9 +15,11 @@ public class AKPickup : MonoBehaviour
     }
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D col) {
-        if(col.gameObject.tag == "Player") {
-        lst.GetComponent<WeaponSpawnManager>().PickedUp(gameObject);
-        col.gameObject.GetComponent<PlayerMovement>().RunAK();
+        if(col.gameObject.tag == "Player") 
+        {
+            FindObjectOfType<AudioSource>().PlayOneShot(soundEffect);
+            lst.GetComponent<WeaponSpawnManager>().PickedUp(gameObject);
+            col.gameObject.GetComponent<PlayerMovement>().RunAK();
         }
     }
 }

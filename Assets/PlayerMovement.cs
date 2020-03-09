@@ -53,6 +53,8 @@ public class PlayerMovement : ShooterMovement
     float prevangle;
     public int ammoCount;
 
+    [SerializeField] AudioClip soundEffect;
+
     [SerializeField] GameStateData defaultGameStateData;
 
 
@@ -293,6 +295,8 @@ public class PlayerMovement : ShooterMovement
         ghost.gameObject.transform.position = rb.position;
         ghost.gameObject.SetActive(true);
         rb.position = ghostPos;
+
+        FindObjectOfType<AudioSource>().PlayOneShot(soundEffect);
 
         // Remove all the glow particles on the player
         while (ParticleCount() > 0)

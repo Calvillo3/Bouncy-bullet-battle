@@ -34,6 +34,8 @@ public class EnemyMovement : ShooterMovement
     [SerializeField] float yBound;
     float reloadedAtTime;
 
+    [SerializeField] AudioClip soundEffect;
+
     GameStateData gameStateData;
 
     // Start is called before the first frame update
@@ -94,6 +96,7 @@ public class EnemyMovement : ShooterMovement
             // var col3 = glowPortalDust.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
             Instantiate(explosion, transform.position, transform.rotation).SetActive(true);
             Instantiate(glowPortalDust, transform.position, transform.rotation).SetActive(true);
+            FindObjectOfType<AudioSource>().PlayOneShot(soundEffect);
             Destroy(this.gameObject);
         }
         FacePlayer();
