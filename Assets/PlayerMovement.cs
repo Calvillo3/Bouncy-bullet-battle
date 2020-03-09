@@ -7,7 +7,8 @@ using TMPro;
 
 public class PlayerMovement : ShooterMovement
 {
-
+    float prevSpeed;
+    [SerializeField] float dashSpeed;
     [SerializeField] float moveSpeed;
     [SerializeField] float turnSpeed;
     GameObject explosion;
@@ -34,6 +35,8 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldMask;
 
+    [SerializeField] GameObject playerArrow;
+
     private List<GlowParticleScript> claimedParticles = new List<GlowParticleScript>();
 
     [SerializeField] float invincibleIncrement;
@@ -57,6 +60,13 @@ public class PlayerMovement : ShooterMovement
 
     [SerializeField] GameStateData defaultGameStateData;
 
+    bool dashActive;
+    bool dashReady;
+    float dashTime;
+    [SerializeField] float dashtTimeLimit;
+
+    Gradient grad;
+
 
     // Other gameObjects might need need these default values
     private void Awake()
@@ -76,6 +86,14 @@ public class PlayerMovement : ShooterMovement
     void Start()
     {
         // So the game doesn't start paused
+        grad = new Gradient();
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f)}, new GradientAlphaKey[] {new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f)});
+        GetComponent<TrailRenderer>().colorGradient = grad;
+        GetComponent<TrailRenderer>().enabled = false;
+        prevSpeed = moveSpeed;
+        dashTime = 0;
+        dashReady = false;
+        dashActive = false;
         Time.timeScale = 1.0f;
         maxHealth = health;
         currShotDelay = 0;
@@ -159,7 +177,27 @@ public class PlayerMovement : ShooterMovement
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        if (dashActive) {
+            dashTime += Time.deltaTime;
+            if(dashTime >= dashtTimeLimit) {
+                dashActive = false;
+                dashTime = 0;
+                moveSpeed = prevSpeed;
+                GetComponent<TrailRenderer>().enabled = false;
+            }
+        }
+
         // rb.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+        if (dashReady) {
+            if (Input.GetAxisRaw("Dash1Player" + playerNum) >= 0.99) {
+                Debug.Log("boop");
+                dashReady = false;
+                dashActive = true;
+                GetComponent<TrailRenderer>().enabled = true;
+                moveSpeed = dashSpeed;
+                playerArrow.GetComponent<SpriteRenderer>().color = Color.black;
+            }
+        }
 
         if (bulletType[0])
         {
@@ -343,6 +381,15 @@ public class PlayerMovement : ShooterMovement
             nextBlink = Time.time + blinkPeriod;
         }
     }
+
+    public void DashReady() {
+        //change arrow color on sprite
+        //set bool value to dashready
+        dashReady = true;
+        //playerArrow.GetComponent<SpriteRenderer>().color = new Color(76, 0, 255, 255);
+        playerArrow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+    }
+
 
     public void AddCircle()
     {
