@@ -45,7 +45,6 @@ public class GlowParticleScript : MonoBehaviour
     {
         if (!owner && collision.gameObject.tag == "Player")
         {
-            Debug.Log("claimed by " + collision.gameObject.name);
             collision.gameObject.GetComponent<PlayerMovement>().ClaimParticle(this);
             positionInOwnerTrail = collision.gameObject.GetComponent<PlayerMovement>().ParticleCount();
             owner = collision.gameObject;

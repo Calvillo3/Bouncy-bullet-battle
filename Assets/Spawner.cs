@@ -207,7 +207,6 @@ public class Spawner : MonoBehaviour
         {
             result += item.ToString() + ", ";
         }
-        Debug.Log(result);
 
         // We've been playing with this as a list to expand it, but elsewhere we need an array
         return waveEnemies.ToArray();
