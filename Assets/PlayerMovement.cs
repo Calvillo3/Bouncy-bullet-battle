@@ -304,6 +304,11 @@ public class PlayerMovement : ShooterMovement
             {
                 potentialPortal.CheckForPlayersInside();
             }
+            PortalComp potentialCompPortal = newColl.gameObject.GetComponent<PortalComp>();
+            if (potentialCompPortal)
+            {
+                potentialCompPortal.CheckForPlayersInside();
+            }
         }
     }
 
