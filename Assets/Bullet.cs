@@ -142,7 +142,10 @@ public class Bullet : MonoBehaviour
                 }
                 if (layerName == "Wall")
                 {
-                    shooter.GetComponent<ShooterMovement>().TakeDamage(damage, shooter);
+                    if(shooter)
+                    { 
+                        shooter.GetComponent<ShooterMovement>().TakeDamage(damage, shooter); 
+                    }
                     Destroy(this.gameObject);
                 }
                 if (layerName == "TransparentFX")
