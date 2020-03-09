@@ -9,6 +9,7 @@ public class GlowParticleScript : MonoBehaviour
     public int positionInOwnerTrail;
     float separationValue;
     float speed;
+    string mode;
 
     [SerializeField] float timeAlive;
     float timeToKill;
@@ -20,6 +21,7 @@ public class GlowParticleScript : MonoBehaviour
         separationValue = 0.1f;
         speed = 7.0f;
         timeToKill = Time.time + timeAlive;
+        mode = FindObjectOfType<GameStateData>().mode;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class GlowParticleScript : MonoBehaviour
                 }
             }
         }
-        else if (Time.time > timeToKill)
+        else if (Time.time > timeToKill && mode != "Tutorial")
         {
             Destroy(this.gameObject);
         }
