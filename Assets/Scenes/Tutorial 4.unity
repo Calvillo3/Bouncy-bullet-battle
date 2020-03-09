@@ -7511,8 +7511,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Pickup guns with limited ammo\nAmmo remaining is shown above\nTry out different
-    guns!\n\n\n\n\n\n\nAKs let you hold down to shoot \nShotguns shoot three bullets"
+  m_text: "Pick up guns with limited ammo\nAmmo remaining is shown above\nTry out
+    different guns!\n\n\n\n\n\n\nAKs let you hold down to shoot \nShotguns shoot three
+    bullets"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04d9e3b577e94404b937ec248486b131, type: 2}
   m_sharedMaterial: {fileID: 2535628059640376232, guid: 04d9e3b577e94404b937ec248486b131,
@@ -7582,10 +7583,10 @@ MonoBehaviour:
   m_margin: {x: 1.5843754, y: -1.5496557, z: 1.587614, w: -1.5495467}
   m_textInfo:
     textComponent: {fileID: 1618942318}
-    characterCount: 150
+    characterCount: 151
     spriteCount: 0
-    spaceCount: 31
-    wordCount: 25
+    spaceCount: 32
+    wordCount: 26
     linkCount: 0
     lineCount: 11
     pageCount: 1
