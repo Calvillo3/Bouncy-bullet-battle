@@ -860,8 +860,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 1556543652}
   - {fileID: 1694788339}
-  - {fileID: 1652275893}
   - {fileID: 42170891}
+  - {fileID: 1652275893}
   timeInBetween: 3
   waveSelector: 1
 --- !u!4 &166553164
