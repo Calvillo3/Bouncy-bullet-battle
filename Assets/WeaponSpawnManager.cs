@@ -52,7 +52,11 @@ public class WeaponSpawnManager : MonoBehaviour
     }
 
     Transform Findspawner() {
-        int randomspot = Random.Range(0, tethertracker.Length - 1);
+        int randomspot = Random.Range(0, tethertracker.Length);
+        while (tethertracker[randomspot] == transform) // Don't use the parent, we want the kids
+        {
+            randomspot = Random.Range(0, tethertracker.Length);
+        }
         return tethertracker[randomspot];
     }
 

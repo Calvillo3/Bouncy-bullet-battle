@@ -13,6 +13,10 @@ public class Tethers : MonoBehaviour
     void OnDrawGizmos() {
         Gizmos.color = Color.magenta;
         foreach (Transform tether in tethers.GetComponentsInChildren<Transform>()) {
+            if (tether.transform.position == transform.position)
+            {
+                continue; // Omit the parent
+            }
             Gizmos.DrawSphere(tether.transform.position, .15f);
         }
     }
