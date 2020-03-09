@@ -858,7 +858,7 @@ MonoBehaviour:
   - {fileID: 1652275893}
   - {fileID: 42170891}
   timeInBetween: 3
-  waveSelector: 5
+  waveSelector: 8
 --- !u!4 &166553164
 Transform:
   m_ObjectHideFlags: 0
