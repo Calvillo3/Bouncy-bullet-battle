@@ -8566,9 +8566,11 @@ MonoBehaviour:
   - {fileID: 9162184765627941298, guid: 88d9c9fe6849ef94baf043418ad670cd, type: 3}
   - {fileID: 9162184765627941298, guid: acafc8d7a146a3747b07c1a9ade6fe64, type: 3}
   - {fileID: 9162184765627941298, guid: 5fd8599c3ce5c1a4487aa8bd76adf022, type: 3}
+  - {fileID: 9162184765627941298, guid: 4faba64c2d081404d913c1e0e7904639, type: 3}
   spawnChance:
-  - 0.33
-  - 0.67
+  - 0.25
+  - 0.5
+  - 0.75
   - 1
   weaponLimit: 1
   upperBound: 7
