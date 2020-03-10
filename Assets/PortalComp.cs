@@ -46,17 +46,23 @@ public class PortalComp : MonoBehaviour
             particlesNeeded--;
             if (particlesNeeded == 0)
             {
-                Instantiate(compRoundEndScreen);
+                GameObject instantiatedEndScreen = Instantiate(compRoundEndScreen);
+                instantiatedEndScreen.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                instantiatedEndScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+                if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    instantiatedEndScreen.transform.localScale *= 1.2f;
+                }
                 if (playerInside.playerNum == 1)
                 {
 
                     gameStateData.p1Wins++;
-                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round Winner: Player 1";
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
                 }
                 else
                 {
                     gameStateData.p2Wins++;
-                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round winner: Player 2";
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                 }
                 GameObject.Find("AfterActionBlueWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p2Wins;
                 GameObject.Find("AfterActionGreenWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p1Wins;
