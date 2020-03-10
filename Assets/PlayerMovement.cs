@@ -371,7 +371,7 @@ public class PlayerMovement : ShooterMovement
                     GameObject afterActionReport = Instantiate(afterActionReportPrefab);
                     if (SceneManager.GetActiveScene().name == "Level 1")
                     {
-                        pauseMenuInScene.transform.localScale *= 1.2f;
+                        afterActionReport.transform.localScale *= 1.2f;
                     }
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
