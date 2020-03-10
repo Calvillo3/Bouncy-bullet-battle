@@ -330,6 +330,7 @@ public class PlayerMovement : ShooterMovement
     private void Die()
     {
         // Explode!
+        GetComponent<TrailRenderer>().enabled = false;
         Gradient grad = new Gradient();
         grad.SetKeys(new GradientColorKey[] { new GradientColorKey(GetComponent<SpriteRenderer>().color, 0.0f), explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.colorKeys[1] }, explosion.GetComponent<ParticleSystem>().colorOverLifetime.color.gradient.alphaKeys);
         var col = explosion.GetComponent<ParticleSystem>().colorOverLifetime;
@@ -398,7 +399,7 @@ public class PlayerMovement : ShooterMovement
         //change arrow color on sprite
         //set bool value to dashready
         dashReady = true;
-        playerArrow.GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 1.0f);
+        playerArrow.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 0.0f);
         // playerArrow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
     }
 
