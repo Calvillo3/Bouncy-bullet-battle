@@ -16,11 +16,15 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] Button button6;
     [SerializeField] Button button7;
     [SerializeField] Button button8;
+    [SerializeField] Button onePlayerButton;
+
     GameStateData diff;
+    bool onePlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        onePlayer = false;
         button1.onClick.AddListener(RunGame);
         button2.onClick.AddListener(RunTutorial);
         button3.onClick.AddListener(QuitGame);
@@ -29,6 +33,7 @@ public class SceneSwitcher : MonoBehaviour
         button6.onClick.AddListener(PlayEasy);
         button7.onClick.AddListener(PlayMedium);
         button8.onClick.AddListener(PlayHard);
+        onePlayerButton.onClick.AddListener(PlayOnePlayer);
 
         diff = FindObjectOfType<GameStateData>();
     }
@@ -63,17 +68,38 @@ public class SceneSwitcher : MonoBehaviour
 
     // Update is called once per frame
     void PlayEasy() {
-        diff.mode = "Co-Op";
+        if (onePlayer)
+        {
+            diff.mode = "Single";
+        }
+        else
+        {
+            diff.mode = "Co-Op";
+        }
         diff.diff = .5f;
         SceneManager.LoadScene("Level 1");
     }
     void PlayMedium() {
-        diff.mode = "Co-Op";
+        if (onePlayer)
+        {
+            diff.mode = "Single";
+        }
+        else
+        {
+            diff.mode = "Co-Op";
+        }
         diff.diff = 1f;
         SceneManager.LoadScene("Level 1");
     }
     void PlayHard() {
-        diff.mode = "Co-Op";
+        if (onePlayer)
+        {
+            diff.mode = "Single";
+        }
+        else
+        {
+            diff.mode = "Co-Op";
+        }
         diff.diff = 1.5f;
         SceneManager.LoadScene("Level 1");
     }
@@ -89,12 +115,15 @@ public class SceneSwitcher : MonoBehaviour
        button3.gameObject.SetActive(false);
        button4.gameObject.SetActive(true);
        button5.gameObject.SetActive(true);
+       onePlayerButton.gameObject.SetActive(true);
        button4.Select();
        button4.OnSelect(null);
 
     
     }   
     void PlayCoop() {
+       onePlayerButton.gameObject.SetActive(false);
+       onePlayer = false;
        button4.gameObject.SetActive(false);
        button5.gameObject.SetActive(false);
        button6.gameObject.SetActive(true);
@@ -103,6 +132,20 @@ public class SceneSwitcher : MonoBehaviour
        button6.Select();
        button6.OnSelect(null);
     }
+
+    void PlayOnePlayer()
+    {
+        onePlayer = true;
+        onePlayerButton.gameObject.SetActive(false);
+        button4.gameObject.SetActive(false);
+        button5.gameObject.SetActive(false);
+        button6.gameObject.SetActive(true);
+        button7.gameObject.SetActive(true);
+        button8.gameObject.SetActive(true);
+        button6.Select();
+        button6.OnSelect(null);
+    }
+
     void RunTutorial() {
         diff.mode = "Tutorial";
         SceneManager.LoadScene("Tutorial 1");

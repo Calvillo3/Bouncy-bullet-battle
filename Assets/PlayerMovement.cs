@@ -111,6 +111,14 @@ public class PlayerMovement : ShooterMovement
                 explosion = (GameObject)allParticles[i];
             }
         }
+
+        if (mode == "Single" && playerNum == 2)
+        {
+            health = 0;
+            dead = true;
+            Vector2 ghostPos = ghost.gameObject.transform.position;
+            rb.position = ghostPos;
+        }
     }
 
     // Update is called once per frame
