@@ -53,6 +53,7 @@ public class SceneSwitcher : MonoBehaviour
             if(button6.gameObject.activeSelf) {
                 button4.gameObject.SetActive(true);
                 button5.gameObject.SetActive(true);
+                onePlayerButton.gameObject.SetActive(true);
                 button6.gameObject.SetActive(false);
                 button7.gameObject.SetActive(false);
                 button8.gameObject.SetActive(false);

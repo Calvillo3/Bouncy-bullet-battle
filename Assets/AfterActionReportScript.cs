@@ -51,13 +51,14 @@ public class AfterActionReportScript : MonoBehaviour
     void Restart()
     {
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        if (GameObject.FindObjectOfType<GameStateData>().mode == "Co-Op")
+        /* if (GameObject.FindObjectOfType<GameStateData>().mode == "Co-Op")
         {
             SceneManager.LoadScene("Level 1");
         } else
         {
             SceneManager.LoadScene("Comp 1");
-        }
+        }*/
+        SceneManager.LoadScene("Level 1");
         GameObject.FindObjectOfType<GameStateData>().Restart();
     }
 
