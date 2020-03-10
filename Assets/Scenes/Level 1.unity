@@ -171,8 +171,8 @@ MonoBehaviour:
   ammoText: {fileID: 0}
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
-  shotgunSprite: {fileID: 21300000, guid: 5584d113bd68b934191ccdf625944985, type: 3}
-  pistolSprite: {fileID: 21300000, guid: 8fdadaf7ae86e5149aad94673070e0c7, type: 3}
+  shotgunSprite: {fileID: 21300000, guid: 6efa694d3458ca54bb7d69bbfa5eddf1, type: 3}
+  pistolSprite: {fileID: 21300000, guid: 54f076522c123ab469e1ec2e99d88ec9, type: 3}
 --- !u!1001 &16870867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7662,7 +7662,7 @@ MonoBehaviour:
   gunImage: {fileID: 0}
   akSprite: {fileID: 21300000, guid: 7831092d52068834196a3cbe8ae56964, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 6efa694d3458ca54bb7d69bbfa5eddf1, type: 3}
-  pistolSprite: {fileID: 21300000, guid: 8fdadaf7ae86e5149aad94673070e0c7, type: 3}
+  pistolSprite: {fileID: 21300000, guid: 54f076522c123ab469e1ec2e99d88ec9, type: 3}
 --- !u!1 &926337159
 GameObject:
   m_ObjectHideFlags: 0
