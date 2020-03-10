@@ -125,12 +125,16 @@ public class PlayerMovement : ShooterMovement
             {
                 Time.timeScale = 1.0f;
                 Destroy(pauseMenuInScene);
-                Debug.Log("Unpause" + playerNum); 
             }
             else
             {
                 pauseMenuInScene = GameObject.Instantiate(pauseMenuPrefab);
-                Debug.Log("Pause" + playerNum);
+                pauseMenuInScene.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                pauseMenuInScene.GetComponent<Canvas>().worldCamera = Camera.main;
+                if(SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    pauseMenuInScene.transform.localScale *= 1.2f;
+                }
                 Time.timeScale = 0.0f;
             }
             // Time.timeScale = Time.timeScale < 1.0f ? 1.0f : 0.0f;
@@ -190,7 +194,6 @@ public class PlayerMovement : ShooterMovement
         // rb.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
         if (dashReady) {
             if (Input.GetAxisRaw("Dash1Player" + playerNum) >= 0.99) {
-                Debug.Log("boop");
                 dashReady = false;
                 dashActive = true;
                 GetComponent<TrailRenderer>().enabled = true;
@@ -365,6 +368,10 @@ public class PlayerMovement : ShooterMovement
                 if (mode != "Tutorial")
                 {
                     GameObject afterActionReport = Instantiate(afterActionReportPrefab);
+                    if (SceneManager.GetActiveScene().name == "Level 1")
+                    {
+                        pauseMenuInScene.transform.localScale *= 1.2f;
+                    }
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
@@ -391,8 +398,8 @@ public class PlayerMovement : ShooterMovement
         //change arrow color on sprite
         //set bool value to dashready
         dashReady = true;
-        //playerArrow.GetComponent<SpriteRenderer>().color = new Color(76, 0, 255, 255);
-        playerArrow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        playerArrow.GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 1.0f);
+        // playerArrow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
     }
 
 

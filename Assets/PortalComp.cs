@@ -46,7 +46,13 @@ public class PortalComp : MonoBehaviour
             particlesNeeded--;
             if (particlesNeeded == 0)
             {
-                Instantiate(compRoundEndScreen);
+                GameObject instantiatedEndScreen = Instantiate(compRoundEndScreen);
+                instantiatedEndScreen.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                instantiatedEndScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+                if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    instantiatedEndScreen.transform.localScale *= 1.2f;
+                }
                 if (playerInside.playerNum == 1)
                 {
 

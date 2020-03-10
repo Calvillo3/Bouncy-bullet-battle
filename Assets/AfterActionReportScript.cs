@@ -30,7 +30,7 @@ public class AfterActionReportScript : MonoBehaviour
         {
             button1.onClick.AddListener(Restart);
         }
-        ;
+        
         button2.onClick.AddListener(BackToMenu);
         button3.onClick.AddListener(QuitGame);
     }
