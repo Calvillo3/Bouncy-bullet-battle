@@ -38,24 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 10.unity
     guid: 1da2b54f4faf73644b283a9d6411e7e9
-  - enabled: 0
-    path: Assets/Scenes/Comp 1.unity
-    guid: 85c2081c8862ded49a66b1bc337ae119
-  - enabled: 0
-    path: Assets/Scenes/Comp 2.unity
-    guid: f6907902dde9e274c9fcadc5ee4df864
-  - enabled: 0
-    path: Assets/Scenes/Comp 3.unity
-    guid: 2e0a9d3b4a1623d409ab56c98005f380
-  - enabled: 0
-    path: Assets/Scenes/Comp 4.unity
-    guid: a165cd071bea4bd45b533db8c18ba6e4
-  - enabled: 0
-    path: Assets/Scenes/Comp 5.unity
-    guid: 6512353a936f2a5448d44bbe27a39533
-  - enabled: 0
-    path: Assets/Scenes/Comp 6.unity
-    guid: 0d83c658b05faed4787d701c0ebf8a6b
   - enabled: 1
     path: Assets/Scenes/Tutorial 1.unity
     guid: fa71f492961147949a3091b5b9f73013
