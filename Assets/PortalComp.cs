@@ -57,12 +57,12 @@ public class PortalComp : MonoBehaviour
                 {
 
                     gameStateData.p1Wins++;
-                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round Winner: Player 1";
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
                 }
                 else
                 {
                     gameStateData.p2Wins++;
-                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "Round winner: Player 2";
+                    GameObject.Find("AfterActionRoundWinner").GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                 }
                 GameObject.Find("AfterActionBlueWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p2Wins;
                 GameObject.Find("AfterActionGreenWins").GetComponent<TextMeshProUGUI>().text = "Wins: " + gameStateData.p1Wins;
