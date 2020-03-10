@@ -163,7 +163,8 @@ public class Spawner : MonoBehaviour
             }
 
             for (int i = 0; i < waveEnemies.Length; i++) {
-                EnemyMovement newFoe = Instantiate(enemies[waveEnemies[i]], spawners[i%spawners.Length].position, Quaternion.identity);
+                int randomSpawner = Mathf.FloorToInt(Mathf.Clamp(Random.value * spawners.Length, 0.0f, (float) spawners.Length-1));
+                EnemyMovement newFoe = Instantiate(enemies[waveEnemies[i]], spawners[randomSpawner].position, Quaternion.identity);
                 newFoe.gameObject.SetActive(true);
             } 
         }
