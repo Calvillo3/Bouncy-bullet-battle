@@ -43,6 +43,7 @@ public class SceneSwitcher : MonoBehaviour
             button1.gameObject.SetActive(true);
             button2.gameObject.SetActive(true);
             button3.gameObject.SetActive(true);
+            onePlayerButton.gameObject.SetActive(false);
             button4.gameObject.SetActive(false);
             button5.gameObject.SetActive(false);
             button4.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
