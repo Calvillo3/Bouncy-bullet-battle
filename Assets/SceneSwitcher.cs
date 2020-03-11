@@ -24,6 +24,7 @@ public class SceneSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         onePlayer = false;
         button1.onClick.AddListener(RunGame);
         button2.onClick.AddListener(RunTutorial);

@@ -67,21 +67,21 @@ public class PlayerMovement : ShooterMovement
     [SerializeField] float dashtTimeLimit;
 
     Gradient grad;
-
+    GameStateData gameStateObject;
 
     // Other gameObjects might need need these default values
     private void Awake()
     {
-        GameStateData diffObject = FindObjectOfType<GameStateData>();
-        if (!diffObject)
+        gameStateObject = FindObjectOfType<GameStateData>();
+        if (!gameStateObject)
         {
-            diffObject = Instantiate(defaultGameStateData);
+            gameStateObject = Instantiate(defaultGameStateData);
             if(comp)
             {
-                diffObject.mode = "Comp";
+                gameStateObject.mode = "Comp";
             }
         }
-        mode = diffObject.mode;
+        mode = gameStateObject.mode;
     }
     // Start is called before the first frame update
     void Start()
@@ -382,13 +382,15 @@ public class PlayerMovement : ShooterMovement
                 if (mode != "Tutorial")
                 {
                     GameObject afterActionReport = Instantiate(afterActionReportPrefab);
+                    afterActionReport.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                    afterActionReport.GetComponent<Canvas>().worldCamera = Camera.main;
                     if (SceneManager.GetActiveScene().name == "Level 1")
                     {
                         afterActionReport.transform.localScale *= 1.2f;
                     }
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
-                    GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("GreenScore").GetComponent<TextMeshProUGUI>().text);
-                    GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().text);
+                    GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + gameStateObject.p1Kills);
+                    GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + gameStateObject.p1Wins);
                 }
             }
         }
