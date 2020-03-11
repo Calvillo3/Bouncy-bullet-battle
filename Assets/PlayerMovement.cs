@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : ShooterMovement
 {
@@ -118,6 +119,10 @@ public class PlayerMovement : ShooterMovement
             dead = true;
             Vector2 ghostPos = ghost.gameObject.transform.position;
             rb.position = ghostPos;
+            GameObject.Find("BlueSkull").GetComponent<SpriteRenderer>().enabled = false;
+            GameObject.Find("BlueAmmo").GetComponent<TextMeshProUGUI>().enabled = false;
+            GameObject.Find("BlueScore").GetComponent<TextMeshProUGUI>().enabled = false;
+            GameObject.Find("BlueGun").GetComponent<Image>().enabled = false;
         }
     }
 
