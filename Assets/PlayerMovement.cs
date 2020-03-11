@@ -390,7 +390,7 @@ public class PlayerMovement : ShooterMovement
                     }
                     GameObject.Find("AfterActionWaveCount").GetComponent<TextMeshProUGUI>().SetText(GameObject.Find("WaveText").GetComponent<TextMeshProUGUI>().text);
                     GameObject.Find("AfterActionGreenKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + gameStateObject.p1Kills);
-                    GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + gameStateObject.p1Wins);
+                    GameObject.Find("AfterActionBlueKills").GetComponent<TextMeshProUGUI>().SetText("Kills: " + gameStateObject.p2Kills);
                 }
             }
         }
