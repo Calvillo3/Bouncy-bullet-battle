@@ -58,12 +58,13 @@ public class AfterActionReportScript : MonoBehaviour
         {
             SceneManager.LoadScene("Comp 1");
         }*/
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameObject.FindObjectOfType<GameStateData>().Restart();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void BackToMenu()
     {
+        GameObject.FindObjectOfType<GameStateData>().Restart();
         SceneManager.LoadScene("MainMenu");
     }
 
