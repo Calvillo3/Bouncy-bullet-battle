@@ -6573,7 +6573,7 @@ Transform:
   m_Father: {fileID: 1513905645}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1069962712
+--- !u!1001 &1090415951
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -6663,7 +6663,7 @@ PrefabInstance:
     - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
@@ -6692,16 +6692,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
-        type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
@@ -6720,21 +6710,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8507406288942699974, guid: a14b74f82e631164db3d1c7c3d7e995c,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8507406288942699975, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 519420031}
+      objectReference: {fileID: 0}
     - target: {fileID: 8507406289816889210, guid: a14b74f82e631164db3d1c7c3d7e995c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -7500,7 +7480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1570361464
 PrefabInstance:
